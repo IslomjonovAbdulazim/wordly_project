@@ -1,26 +1,15 @@
-class SocialAuthRequestModel {
-  late final String provider; // "google", "apple", or "facebook"
-  late final String token;    // The token obtained from the social login SDK
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  SocialAuthRequestModel({
-    required this.provider,
-    required this.token,
-  });
+part 'social_auth_request_model.freezed.dart';
+part 'social_auth_request_model.g.dart';
 
-  factory SocialAuthRequestModel.fromJson(Map<String, dynamic> json) {
-    return SocialAuthRequestModel(
-      provider: json['provider'],
-      token: json['token'],
-    );
-  }
+@freezed
+class SocialAuthRequestModel with _$SocialAuthRequestModel {
+  const factory SocialAuthRequestModel({
+    required String provider, // "google", "apple", or "facebook"
+    required String token,    // The token obtained from the social login SDK
+  }) = _SocialAuthRequestModel;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'provider': provider,
-      'token': token,
-    };
-  }
-
-  @override
-  String toString() => toJson().toString();
+  factory SocialAuthRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$SocialAuthRequestModelFromJson(json);
 }

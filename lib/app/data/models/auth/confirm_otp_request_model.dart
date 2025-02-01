@@ -1,30 +1,14 @@
-class ConfirmOtpRequestModel {
-  late final String email;
-  late final String otp;
-  late final String? otpId;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  ConfirmOtpRequestModel({
-    required this.email,
-    required this.otp,
-    this.otpId,
-  });
+part 'confirm_otp_request_model.freezed.dart';
+part 'confirm_otp_request_model.g.dart';
 
-  factory ConfirmOtpRequestModel.fromJson(Map<String, dynamic> json) {
-    return ConfirmOtpRequestModel(
-      email: json['email'],
-      otp: json['otp'],
-      otpId: json['otpId'],
-    );
-  }
+@freezed
+class ConfirmOtpRequestModel with _$ConfirmOtpRequestModel {
+  const factory ConfirmOtpRequestModel({
+    required String email,
+    required String newPassword,
+}) = _ConfirmOtpRequestModel;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'otp': otp,
-      'otpId': otpId,
-    };
-  }
-
-  @override
-  String toString() => toJson().toString();
+  factory ConfirmOtpRequestModel.fromJson(Map<String, dynamic> json) => _$ConfirmOtpRequestModelFromJson(json);
 }

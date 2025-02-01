@@ -1,22 +1,13 @@
-class ForgotPasswordRequestModel {
-  late final String email;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  ForgotPasswordRequestModel({
-    required this.email,
-  });
+part 'forgot_password_request_model.freezed.dart';
+part 'forgot_password_request_model.g.dart';
 
-  factory ForgotPasswordRequestModel.fromJson(Map<String, dynamic> json) {
-    return ForgotPasswordRequestModel(
-      email: json['email'],
-    );
-  }
+@freezed
+class ForgotPasswordRequestModel with _$ForgotPasswordRequestModel {
+  const factory ForgotPasswordRequestModel({
+    required String email,
+  }) = _ForgotPasswordRequestModel;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-    };
-  }
-
-  @override
-  String toString() => toJson().toString();
+  factory ForgotPasswordRequestModel.fromJson(Map<String, dynamic> json) => _$ForgotPasswordRequestModelFromJson(json);
 }

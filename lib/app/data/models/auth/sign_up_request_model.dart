@@ -1,30 +1,15 @@
-class SignUpRequestModel {
-  late final String email;
-  late final String password;
-  late final String? name;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  SignUpRequestModel({
-    required this.email,
-    required this.password,
-    this.name,
-  });
+part 'sign_up_request_model.freezed.dart';
+part 'sign_up_request_model.g.dart';
 
-  factory SignUpRequestModel.fromJson(Map<String, dynamic> json) {
-    return SignUpRequestModel(
-      email: json['email'],
-      password: json['password'],
-      name: json['name'],
-    );
-  }
+@freezed
+class SignUpRequestModel with _$SignUpRequestModel {
+  const factory SignUpRequestModel({
+    required String email,
+    required String password,
+    String? name,
+  }) = _SignUpRequestModel;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'password': password,
-      'name': name,
-    };
-  }
-
-  @override
-  String toString() => toJson().toString();
+  factory SignUpRequestModel.fromJson(Map<String, dynamic> json) => _$SignUpRequestModelFromJson(json);
 }
