@@ -1,26 +1,16 @@
-class ChangePasswordRequestModel {
-  late final String email;
-  late final String newPassword;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  ChangePasswordRequestModel({
-    required this.email,
-    required this.newPassword,
-  });
+import '../../../../domain/entities/auth_user.dart';
 
-  factory ChangePasswordRequestModel.fromJson(Map<String, dynamic> json) {
-    return ChangePasswordRequestModel(
-      email: json['email'],
-      newPassword: json['newPassword'],
-    );
-  }
+part 'change_password_request_model.freezed.dart';
+part 'change_password_request_model.g.dart';
 
-  Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'newPassword': newPassword,
-    };
-  }
+@freezed
+class ChangePasswordRequestModel with _$ChangePasswordRequestModel {
+  const factory ChangePasswordRequestModel({
+    required String email,
+    required String newPassword,
+  }) = _ChangePasswordRequestModel;
 
-  @override
-  String toString() => toJson().toString();
+  factory ChangePasswordRequestModel.fromJson(Map<String, dynamic> json) => _$ChangePasswordRequestModelFromJson(json);
 }
