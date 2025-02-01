@@ -1,45 +1,26 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../domain/entities/auth_user.dart';
 
-class AuthModel {
-  final String id;
-  final String email;
-  final String? name;
-  final String? token;
-  final bool emailVerified;
-  final String? createdAt; // Stored as a String in the JSON response
+part 'auth_model.freezed.dart';
+part 'auth_model.g.dart';
 
-  AuthModel({
-    required this.id,
-    required this.email,
-    this.name,
-    this.token,
-    this.emailVerified = false,
-    this.createdAt,
-  });
+@freezed
+class AuthModel with _$AuthModel {
+  const factory AuthModel({
+    required String id,
+    required String email,
+    String? name,
+    String? token,
+    @Default(false) bool emailVerified,
+    String? createdAt,
+  }) = _AuthModel;
 
-  factory AuthModel.fromJson(Map<String, dynamic> json) {
-    return AuthModel(
-      id: json['id'] as String,
-      email: json['email'] as String,
-      name: json['name'] as String?,
-      token: json['token'] as String?,
-      emailVerified: json['emailVerified'] as bool? ?? false,
-      createdAt: json['createdAt'] as String?,
-    );
-  }
+  factory AuthModel.fromJson(Map<String, dynamic> json) =>
+      _$AuthModelFromJson(json);
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'email': email,
-      'name': name,
-      'token': token,
-      'emailVerified': emailVerified,
-      'createdAt': createdAt,
-    };
-  }
-
-  // Convert the AuthModel to the domain AuthUser entity.
+extension AuthModelX on AuthModel {
   AuthUser toEntity() {
     return AuthUser(
       id: id,

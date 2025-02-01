@@ -1,9 +1,13 @@
-// lib/utils/constants/color_constants.dart
 import 'package:flutter/material.dart';
 
 class ColorConstants {
-  static const Color primaryColor = Color(0xFF0A73FF);
-  static const Color secondaryColor = Color(0xFFFFA726);
-  static const Color backgroundColor = Colors.white;
-  static const Color errorColor = Colors.red;
+  static const Color white = Color(0xffffffff);
+  static const Color black = Color(0xff000000);
+  static const Color lightBlue = Color(0xffD6DFFF);
+  static const Color lighterBlue = Color(0xffF5F9FE);
+  static const Color borderGrey = Color(0xffEAEFF5);
+  static const Color blue = Color(0xff3461fd);
+  static const Color darkBlue = Color(0xff2b4eca);
+  static const Color grey = Color(0xff8491a6);
+  static const Color darkGrey = Color(0xff3e4256);
 }
