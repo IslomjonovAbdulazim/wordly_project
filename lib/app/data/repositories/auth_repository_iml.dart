@@ -43,7 +43,6 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-
   @override
   Future<Either<NetworkFailure, AuthUser>> signUpWithEmail(
       SignUpRequestModel request) async {
