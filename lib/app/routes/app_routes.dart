@@ -4,6 +4,7 @@ class AppRoutes {
 
   /// main
   static const main = "/main";
+  static const offline = "/offline";
   static const home = "$main/home";
   static const saved = "$main/saved";
   static const leaderboard = "$main/leaderboard";
