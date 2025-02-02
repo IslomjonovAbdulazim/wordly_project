@@ -32,8 +32,6 @@ class MyApp extends StatelessWidget {
         themeMode: themeController.themeMode,
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.todo,
-
-
         getPages: AppPages.pages,
         builder: (context, child) => MediaQuery(
           data: MediaQuery.of(context).copyWith(
