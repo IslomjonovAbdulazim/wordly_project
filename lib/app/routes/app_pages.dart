@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wordly_project/app/bindings/auth/onboarding_binding.dart';
+import 'package:wordly_project/app/features/auth/onboarding/imports.dart';
 import 'package:wordly_project/app/features/screens/splash/splash_page.dart';
 
 import '../bindings/todo_binding.dart';
@@ -25,6 +27,23 @@ class AppPages {
     GetPage(
       name: AppRoutes.onboarding,
       page: () => Container(color: Colors.red),
+    ),
+
+    /// auth
+    GetPage(
+      name: AppRoutes.onboarding,
+      page: () => OnboardingPage(),
+      binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onboarding,
+      page: () => OnboardingPage(),
+      binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onboarding,
+      page: () => OnboardingPage(),
+      binding: OnboardingBinding(),
     ),
   ];
 }
