@@ -1,5 +1,7 @@
 // lib/utils/constants/title_constants.dart
-class StringConstants {
+class TitleConstants {
+  TitleConstants._();
+
   static const String connectionLost = "Connection Lost";
 
 }
