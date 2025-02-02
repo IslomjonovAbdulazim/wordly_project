@@ -15,7 +15,7 @@ class __LoginButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          // context.go(AppRoutePaths.signIn);
+          Get.to(AppRoutes.signIn);
         },
         child: Center(
           child: Text(

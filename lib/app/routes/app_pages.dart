@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/bindings/auth/onboarding_binding.dart';
 import 'package:wordly_project/app/features/auth/onboarding/imports.dart';
+import 'package:wordly_project/app/features/auth/sign_in/imports.dart';
 import 'package:wordly_project/app/features/screens/splash/splash_page.dart';
 
 import '../bindings/todo_binding.dart';
@@ -24,10 +25,6 @@ class AppPages {
       name: AppRoutes.offline,
       page: () => OfflinePage(),
     ),
-    GetPage(
-      name: AppRoutes.onboarding,
-      page: () => Container(color: Colors.red),
-    ),
 
     /// auth
     GetPage(
@@ -36,8 +33,8 @@ class AppPages {
       binding: OnboardingBinding(),
     ),
     GetPage(
-      name: AppRoutes.onboarding,
-      page: () => OnboardingPage(),
+      name: AppRoutes.signIn,
+      page: () => SignInPage(),
       binding: OnboardingBinding(),
     ),
     GetPage(
