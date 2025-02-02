@@ -1,7 +1,7 @@
 part of 'imports.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class OnboardingPage extends StatelessWidget {
+  const OnboardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
