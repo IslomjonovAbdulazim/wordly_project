@@ -1,4 +1,6 @@
 class IconConstants {
+  IconConstants._();
+
   static const String back = 'assets/icons/back.png';
   static const String check = 'assets/icons/check.png';
   static const String crown = 'assets/icons/crown.svg';
