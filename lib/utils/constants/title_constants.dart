@@ -3,5 +3,5 @@ class TitleConstants {
   TitleConstants._();
 
   static const String connectionLost = "Connection Lost";
-
+  static const String noConnection = "No Connection";
 }
