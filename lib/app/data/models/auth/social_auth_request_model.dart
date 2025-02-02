@@ -7,7 +7,7 @@ part 'social_auth_request_model.g.dart';
 class SocialAuthRequestModel with _$SocialAuthRequestModel {
   const factory SocialAuthRequestModel({
     required String provider, // "google", "apple", or "facebook"
-    required String token,    // The token obtained from the social login SDK
+    required String token, // The token obtained from the social login SDK
   }) = _SocialAuthRequestModel;
 
   factory SocialAuthRequestModel.fromJson(Map<String, dynamic> json) =>
