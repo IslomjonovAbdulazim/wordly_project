@@ -3,6 +3,7 @@ class AppRoutes {
   static const todo = '/todo';
 
   /// main
+  static const splash = "/";
   static const main = "/main";
   static const offline = "/offline";
   static const home = "$main/home";

@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:toastification/toastification.dart';
+import 'package:wordly_project/utils/services/connectivity_service.dart';
+import 'package:wordly_project/utils/services/token_service.dart';
 import 'package:wordly_project/utils/themes/app_theme.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
-import 'utils/services/connectivity_service.dart';
 import 'utils/services/theme_service.dart';
 
 void main() async {
@@ -15,6 +15,7 @@ void main() async {
   await GetStorage.init();
   Get.put(ThemeController());
   await Get.putAsync(() => ConnectivityService().init());
+  await Get.putAsync(() => TokenService().init());
   runApp(const MyApp());
 }
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.darkTheme,
         themeMode: themeController.themeMode,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.todo,
+        initialRoute: AppRoutes.splash,
         getPages: AppPages.pages,
         builder: (context, child) => MediaQuery(
           data: MediaQuery.of(context).copyWith(
