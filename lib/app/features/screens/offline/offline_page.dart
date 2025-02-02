@@ -14,7 +14,7 @@ class OfflinePage extends StatelessWidget {
         }
       }
       return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: context.backgroundColor,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -27,7 +27,6 @@ class OfflinePage extends StatelessWidget {
                   SvgPicture.asset(
                     ImageConstants.connectionLost,
                   ),
-
                 ],
               ),
             ),

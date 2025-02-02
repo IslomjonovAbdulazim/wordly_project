@@ -7,4 +7,8 @@ extension ContextExtensions on BuildContext {
 
   /// Access media query data.
   Size get screenSize => MediaQuery.of(this).size;
+
+  ThemeData get theme => Theme.of(this);
+
+  Color get backgroundColor => theme.scaffoldBackgroundColor;
 }
