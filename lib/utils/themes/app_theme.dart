@@ -41,8 +41,6 @@ class AppTheme {
     ),
   );
 
-
-
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme(
