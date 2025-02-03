@@ -41,21 +41,13 @@ class SocialAuthService {
 
       final GoogleSignInAuthentication auth = await account.authentication;
 
-      // 109764020606022675638
-      // 109764020606022675638
-      // ya29.a0AXeO80RtwTeQ36wGI5nCbUvp_GhcDBi8gURvmkfcl1SZ0DhZXqy3sQKJ9otdhmsb_cBQip92PPy0bfOu_SYJc_XWCpjlZiRWyIyFHwjxVlJtWpb_3tO-hWfYCnkGc6U6YEgUqXlpjfMzjDubttCzxmQeRq7sAY-qr4UD7B-CaCgYKAUASARESFQHGX2MiLimUqhx4wJECz9hm_cpj-g0175
-
-      SocialUser user = SocialUser(
+      return SocialUser(
         name: account.displayName,
         email: account.email,
         avatarUrl: account.photoUrl,
         id: account.id,
         accessToken: auth.accessToken,
       );
-
-      print(user);
-
-      return user;
     } catch (e) {
       Logger.log("Error");
 
