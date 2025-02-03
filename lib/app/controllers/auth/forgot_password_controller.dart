@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/data/models/auth/forgot_password_request_model.dart';
+import 'package:wordly_project/app/routes/app_routes.dart';
 import 'package:wordly_project/utils/helpers/validation_helper.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
@@ -31,6 +32,8 @@ class ForgotPasswordController extends GetxController {
       final api = Get.find<AuthRepository>();
       final result = await api.forgotPassword(request);
 
+      await Future.delayed(Duration(seconds: 1)); // todo delete
+
       isLoading.value = false;
 
       result.fold(
@@ -42,7 +45,7 @@ class ForgotPasswordController extends GetxController {
         (user) {
           Get.closeAllSnackbars();
           Get.snackbar("SMS Code sent", email);
-          Get.offAllNamed('/home');
+          Get.to(AppRoutes.confirmOTP);
         },
       );
     }
