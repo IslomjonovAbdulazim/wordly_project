@@ -41,7 +41,7 @@ class ForgotPasswordController extends GetxController {
         },
         (user) {
           Get.closeAllSnackbars();
-          Get.snackbar("Success", "Welcome, ${user.name}!");
+          Get.snackbar("SMS Code sent", email);
           Get.offAllNamed('/home');
         },
       );
