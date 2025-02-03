@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.darkTheme,
         themeMode: themeController.themeMode,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.splash,
+        initialRoute: AppRoutes.forgotPassword,
         getPages: AppPages.pages,
         builder: (context, child) => MediaQuery(
           data: MediaQuery.of(context).copyWith(

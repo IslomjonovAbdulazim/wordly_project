@@ -29,10 +29,25 @@ class __Texts extends StatelessWidget {
           "Verify Your Email",
           style: context.display,
         ),
-        Text(
-          "We’ve sent a verification code to {islomjonov.abdulazim.27@gmail.com}. Please enter the code below to continue and reset your password.",
-          style: context.body,
+        RichText(
           textAlign: TextAlign.center,
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: "We’ve sent a verification code to\n",
+                style: context.body,
+              ),
+              TextSpan(
+                text: "islomjonov.abdulazim.27@gmail.com",
+                style: context.code,
+              ),
+              TextSpan(
+                text:
+                    "\nPlease enter the code below to continue and reset your password.",
+                style: context.body,
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -71,20 +86,20 @@ class __OTPField extends StatelessWidget {
       length: 5,
       animationType: AnimationType.scale,
       animationDuration: const Duration(milliseconds: 300),
-      textStyle: context.body,
-      // cursorColor: _Colors.black,
+      textStyle: context.title,
+      cursorColor: context.textPrimary,
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(12),
         fieldHeight: 65,
         fieldWidth: 50,
         fieldOuterPadding: EdgeInsets.zero,
-        // activeFillColor: _Colors.lighterBlue,
-        // inactiveFillColor: _Colors.lighterBlue,
-        // selectedFillColor: _Colors.lighterBlue,
-        // activeColor: _Colors.blue,
-        // inactiveColor: _Colors.borderGrey,
-        // selectedColor: _Colors.black,
+        activeFillColor: context.primary,
+        inactiveFillColor: context.onSurface,
+        selectedFillColor: context.primary,
+        activeColor: context.primary,
+        inactiveColor: context.primary,
+        selectedColor: context.textPrimary,
       ),
       enableActiveFill: true,
       keyboardType: TextInputType.number,
