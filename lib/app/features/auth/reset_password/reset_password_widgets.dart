@@ -27,19 +27,11 @@ class __Texts extends StatelessWidget {
       children: [
         Text(
           "Reset Your Password",
-          style: GoogleFonts.montserrat(
-            color: _Colors.darkBlue,
-            fontSize: 25,
-            fontWeight: FontWeight.w700,
-          ),
+          style: context.display,
         ),
         Text(
           "Enter your new password below. Make sure it's strong and secure to keep your account safe",
-          style: GoogleFonts.quicksand(
-            color: _Colors.black,
-            fontWeight: FontWeight.w500,
-            height: 1.14,
-          ),
+          style: context.body,
           textAlign: TextAlign.center,
         ),
       ],
@@ -47,56 +39,55 @@ class __Texts extends StatelessWidget {
   }
 }
 
-class __Password extends ConsumerWidget {
+class __Password extends StatelessWidget {
   const __Password();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    TextEditingController controller =
-        ref.read(_passwordProvider.notifier).controller;
-    FocusNode focusNode = ref.watch(_passwordProvider);
-    bool hideEye = ref.watch(_hideEyeProvider);
-    return TextField(
-      autofocus: true,
-      controller: controller,
-      focusNode: focusNode,
-      onTapOutside: (_) {
-        focusNode.unfocus();
-      },
-      textInputAction: TextInputAction.next,
-      autocorrect: false,
-      obscureText: hideEye,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: _Colors.lightBlue,
-        hintText: "Password",
-        suffixIcon: CupertinoButton(
-          padding: EdgeInsets.zero,
-          onPressed: ref.read(_hideEyeProvider.notifier).change,
-          child: Icon(
-            hideEye ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye_fill,
-            color: _Colors.darkBlue,
-            size: 26,
+  Widget build(BuildContext context) {
+    final controller = Get.find<ResetPasswordController>();
+    return Obx(
+      () => TextField(
+        autofocus: true,
+        controller: controller.passwordController,
+        focusNode: controller.passwordFocus.value,
+        onTapOutside: (_) {
+          controller.unFocus();
+        },
+        textInputAction: TextInputAction.next,
+        autocorrect: false,
+        obscureText: hideEye,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: _Colors.lightBlue,
+          hintText: "Password",
+          suffixIcon: CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: ref.read(_hideEyeProvider.notifier).change,
+            child: Icon(
+              hideEye ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye_fill,
+              color: _Colors.darkBlue,
+              size: 26,
+            ),
           ),
-        ),
-        contentPadding: EdgeInsets.only(
-          left: 25,
-          right: 25,
-          top: 15,
-          bottom: 15,
-        ),
-        hintStyle: GoogleFonts.quicksand(
-          color: _Colors.grey,
-          fontWeight: FontWeight.w600,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(
-            color: _Colors.darkBlue,
+          contentPadding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 15,
+            bottom: 15,
+          ),
+          hintStyle: GoogleFonts.quicksand(
+            color: _Colors.grey,
+            fontWeight: FontWeight.w600,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: _Colors.darkBlue,
+            ),
           ),
         ),
       ),
