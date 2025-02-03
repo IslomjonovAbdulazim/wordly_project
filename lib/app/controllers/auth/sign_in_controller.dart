@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/data/models/auth/sign_in_request_model.dart';
 import 'package:wordly_project/domain/repositories/auth_respository.dart';
@@ -43,28 +43,33 @@ class SignInController extends GetxController {
         "Use at least 8 characters with one uppercase letter and one number.",
       );
     } else {
-      SignInRequestModel model = SignInRequestModel(
-        email: email,
-        password: password,
+      // Prevent opening multiple dialogs
+      if (isLoading.value) return;
+
+      isLoading.value = true;
+      Get.closeAllSnackbars();
+      Get.dialog(
+        const Center(child: CircularProgressIndicator.adaptive()),
+        barrierDismissible: false,
       );
 
+      SignInRequestModel model = SignInRequestModel(email: email, password: password);
       final impl = Get.find<AuthRepository>();
-      final result = await impl.signInWithEmail(model);
-      result.fold(
-        (failure) {
-          Get.closeAllSnackbars();
-          Get.snackbar(
-            "Error",
-            failure.message ?? "Something went wrong. Please try again.",
-          );
-        },
-        (user) {
-          Get.closeAllSnackbars();
-          Get.snackbar(
-            "Success",
-            "Welcome, ${user.name}!",
-          );
 
+      final result = await impl.signInWithEmail(model);
+
+      if (Get.isDialogOpen == true) {
+        Get.back(); // Close the loading dialog
+      }
+
+      isLoading.value = false;
+
+      result.fold(
+            (failure) {
+          Get.snackbar("Error", failure.message ?? "Something went wrong. Please try again.");
+        },
+            (user) {
+          Get.snackbar("Success", "Welcome, ${user.name}!");
           Get.offAllNamed('/home');
         },
       );
