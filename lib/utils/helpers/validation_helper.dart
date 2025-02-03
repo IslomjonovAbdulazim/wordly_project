@@ -1,5 +1,7 @@
 // lib/utils/helpers/validation_helper.dart
 class ValidationHelper {
+  ValidationHelper._();
+
   /// Check if the provided string is a valid email.
   static bool isValidEmail(String email) {
     final regex = RegExp(r"^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$");
