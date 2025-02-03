@@ -133,42 +133,44 @@ class __Password extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<SignUpController>();
-    return TextField(
-      controller: controller.passwordController,
-      focusNode: controller.passwordFocus.value,
-      onTapOutside: (_) {
-        controller.unFocus();
-      },
-      autocorrect: false,
-      obscureText: controller.eyeHidden.value,
-      decoration: InputDecoration(
-        filled: true,
-        hintText: "Password",
-        suffixIcon: CupertinoButton(
-          padding: EdgeInsets.zero,
-          onPressed: controller.toggleEye,
-          child: Icon(
-            controller.eyeHidden.value
-                ? CupertinoIcons.eye_slash_fill
-                : CupertinoIcons.eye_fill,
-            size: 26,
+    return Obx(() {
+      return TextField(
+        controller: controller.passwordController,
+        focusNode: controller.passwordFocus.value,
+        onTapOutside: (_) {
+          controller.unFocus();
+        },
+        autocorrect: false,
+        obscureText: controller.eyeHidden.value,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: "Password",
+          suffixIcon: CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: controller.toggleEye,
+            child: Icon(
+              controller.eyeHidden.value
+                  ? CupertinoIcons.eye_slash_fill
+                  : CupertinoIcons.eye_fill,
+              size: 26,
+            ),
+          ),
+          contentPadding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 15,
+            bottom: 15,
+          ),
+          hintStyle: context.body,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
-        contentPadding: EdgeInsets.only(
-          left: 25,
-          right: 25,
-          top: 15,
-          bottom: 15,
-        ),
-        hintStyle: context.body,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -125,14 +125,16 @@ class _Privacy extends StatelessWidget {
   }
 }
 
-class _LoginButton extends StatelessWidget {
-  const _LoginButton();
+class _SignUpButton extends StatelessWidget {
+  const _SignUpButton();
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: context.elevatedButtonStyle,
-      onPressed: () {},
+      onPressed: () {
+        Get.find<SignUpController>().signUpWithEmail();
+      },
       child: Center(
         child: Text(
           "Create Account",

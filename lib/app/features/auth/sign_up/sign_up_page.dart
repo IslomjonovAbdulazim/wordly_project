@@ -25,7 +25,7 @@ class SignUpPage extends StatelessWidget {
                 SizedBox(height: 5),
                 _Privacy(),
                 SizedBox(height: 25),
-                _LoginButton(),
+                _SignUpButton(),
                 SizedBox(height: 10),
                 _GoSignIn(),
                 SizedBox(height: 50),
