@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
 import 'package:wordly_project/utils/constants/image_constants.dart';
+import 'package:wordly_project/utils/extenstions/button_extenstion.dart';
+import 'package:wordly_project/utils/extenstions/color_extension.dart';
+import 'package:wordly_project/utils/extenstions/text_style_extention.dart';
 
 import '../../../../utils/constants/color_constants.dart';
 

@@ -7,15 +7,11 @@ class OnboardingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorConstants.white,
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(ImageConstants.welcomeBackground),
-              ),
-            ),
+          Image.asset(
+            ImageConstants.welcomeBackground,
+            color: Colors.transparent,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),

@@ -42,7 +42,7 @@ class _Or extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             "Or",
-            style: context.body,
+            style: context.caption,
           ),
         ),
         Expanded(child: Divider(thickness: .5)),
@@ -82,8 +82,8 @@ class _ForgetPassword extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(3),
             child: Text(
-              "Forget Password?",
-              style: context.caption,
+              "Forgot Password?",
+              style: context.subtitle,
             ),
           ),
         ),
@@ -98,12 +98,12 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: context.elevatedButtonLargeStyle,
+      style: context.elevatedButtonStyle,
       onPressed: () {},
       child: Center(
         child: Text(
           "Log In",
-          style: context.body,
+          style: context.elevatedButton,
         ),
       ),
     );
@@ -121,7 +121,7 @@ class _GoSignUp extends StatelessWidget {
         children: [
           Text(
             "Don't have account?",
-            style: GoogleFonts.montserrat(),
+            style: context.body,
           ),
           SizedBox(width: 5),
           InkWell(
@@ -133,7 +133,7 @@ class _GoSignUp extends StatelessWidget {
               padding: const EdgeInsets.all(3),
               child: Text(
                 "Sign up",
-                style: context.body,
+                style: context.subtitle,
               ),
             ),
           ),

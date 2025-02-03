@@ -10,7 +10,7 @@ class __Title extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "Welcome Back!",
-      style: context.headline,
+      style: context.display,
     );
   }
 }
@@ -35,7 +35,7 @@ class __Description extends StatelessWidget {
 /// FACEBOOK BUTTON
 ///
 class __Facebook extends StatelessWidget {
-  const __Facebook({Key? key}) : super(key: key);
+  const __Facebook();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class __Facebook extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Image.asset(_Icons.facebook, height: 25),
+            Image.asset(IconConstants.facebook, height: 25),
             const SizedBox(width: 5),
             Text(
               "Facebook",
@@ -63,7 +63,7 @@ class __Facebook extends StatelessWidget {
 /// GOOGLE BUTTON
 ///
 class __Google extends StatelessWidget {
-  const __Google({Key? key}) : super(key: key);
+  const __Google();
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class __Google extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Image.asset(_Icons.google, height: 25),
+            Image.asset(IconConstants.google, height: 25),
             const SizedBox(width: 5),
             Text(
               "Google",
