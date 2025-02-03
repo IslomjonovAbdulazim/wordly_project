@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/bindings/auth/auth_impl_binding.dart';
 import 'package:wordly_project/app/bindings/auth/onboarding_binding.dart';
 import 'package:wordly_project/app/bindings/auth/sign_in_binding.dart';
+import 'package:wordly_project/app/bindings/auth/sign_up_binding.dart';
 import 'package:wordly_project/app/features/auth/onboarding/imports.dart';
 import 'package:wordly_project/app/features/auth/sign_in/imports.dart';
+import 'package:wordly_project/app/features/auth/sign_up/imports.dart';
 import 'package:wordly_project/app/features/screens/splash/splash_page.dart';
 
 import '../bindings/todo_binding.dart';
@@ -43,9 +44,12 @@ class AppPages {
       ],
     ),
     GetPage(
-      name: AppRoutes.onboarding,
-      page: () => OnboardingPage(),
-      binding: OnboardingBinding(),
+      name: AppRoutes.signUp,
+      page: () => SignUpPage(),
+      bindings: [
+        SignUpBinding(),
+        AuthImplBinding(),
+      ],
     ),
   ];
 }
