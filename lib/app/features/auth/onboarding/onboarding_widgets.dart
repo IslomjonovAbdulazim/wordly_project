@@ -31,7 +31,7 @@ class __RegisterButton extends StatelessWidget {
       child: ElevatedButton(
         style: context.elevatedButtonStyle,
         onPressed: () {
-          // context.go(AppRoutePaths.signUp);
+          Get.toNamed(AppRoutes.signUp);
         },
         child: Center(
           child: Text(
