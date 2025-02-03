@@ -72,51 +72,56 @@ class _Privacy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<SignUpController>();
-    return Row(
-      children: [
-        Transform.scale(
-          scale: 1.6,
-          child: Checkbox(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6),
+    return Obx(() {
+      return Row(
+        children: [
+          Transform.scale(
+            scale: 1.6,
+            child: Checkbox(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6),
+              ),
+              side: BorderSide(
+                width: 1,
+                color: context.textSecondary,
+              ),
+              onChanged: controller.toggleAgreement,
+              value: controller.isAgree.value,
             ),
-            side: BorderSide.none,
-            onChanged: controller.toggleAgreement,
-            value: controller.isAgree.value,
           ),
-        ),
-        SizedBox(width: 5),
-        Expanded(
-          child: Wrap(
-            alignment: WrapAlignment.start,
-            direction: Axis.horizontal,
-            runAlignment: WrapAlignment.start,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              Text(
-                "I'm agree to the",
-                style: context.caption,
-              ),
-              SizedBox(width: 5),
-              Text(
-                "Terms of Service",
-                style: context.code,
-              ),
-              SizedBox(width: 5),
-              Text(
-                "and",
-                style: context.caption,
-              ),
-              SizedBox(width: 5),
-              Text(
-                "Privacy Policy",
-                style: context.code,
-              ),
-            ],
+          SizedBox(width: 5),
+          Expanded(
+            child: Wrap(
+              alignment: WrapAlignment.start,
+              direction: Axis.horizontal,
+              runAlignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text(
+                  "I'm agree to the",
+                  style: context.caption,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "Terms of Service",
+                  style: context.body,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "and",
+                  style: context.caption,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "Privacy Policy",
+                  style: context.body,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
+    });
   }
 }
 
