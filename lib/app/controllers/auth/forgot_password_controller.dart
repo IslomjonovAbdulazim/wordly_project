@@ -8,7 +8,9 @@ import '../../../domain/repositories/auth_respository.dart';
 
 class ForgotPasswordController extends GetxController {
   RxBool isLoading = false.obs;
-  TextEditingController emailController = TextEditingController();
+  TextEditingController emailController = TextEditingController(
+    text: "azim@gmail.com",
+  );
   Rx<FocusNode> emailFocus = FocusNode().obs;
 
   void unFocus() {
@@ -41,11 +43,12 @@ class ForgotPasswordController extends GetxController {
           Get.closeAllSnackbars();
           Get.snackbar("Error",
               failure.message ?? "Something went wrong. Please try again.");
+          Get.toNamed(AppRoutes.confirmOTP);
         },
         (user) {
           Get.closeAllSnackbars();
           Get.snackbar("SMS Code sent", email);
-          Get.to(AppRoutes.confirmOTP);
+          Get.toNamed(AppRoutes.confirmOTP);
         },
       );
     }
