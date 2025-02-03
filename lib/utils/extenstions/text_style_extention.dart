@@ -5,7 +5,7 @@ import '../constants/font_constants.dart';
 extension TextStylesExtension on BuildContext {
   /// A bold, extra-large style for banners or prominent displays.
   TextStyle get display => TextStyle(
-        fontFamily: FontConstants.montserrat,
+        fontFamily: FontConstants.oswald,
         fontSize: 40,
         fontWeight: FontWeight.bold,
         color: Theme.of(this).colorScheme.onSurface,

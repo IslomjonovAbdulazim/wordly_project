@@ -65,10 +65,6 @@ flutter:
     - assets/images/
     - assets/lotties/
 
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "assets/icons/logo.png"
 
   fonts:
     - family: Montserrat
@@ -213,3 +209,8 @@ flutter_icons:
         - asset: assets/fonts/source_code_pro/SourceCodePro-SemiBoldItalic.ttf
           weight: 600
           style: italic
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/logo.png"

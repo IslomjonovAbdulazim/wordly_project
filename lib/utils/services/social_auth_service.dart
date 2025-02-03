@@ -1,8 +1,5 @@
-import 'dart:io' show Platform;
-
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:wordly_project/utils/helpers/logger.dart';
 
 class SocialUser {
   final String? name;
@@ -29,8 +26,11 @@ class SocialAuthService {
   /// Google Sign In
   static Future<SocialUser?> signInWithGoogle() async {
     try {
+      Logger.log("Boshlandi");
       final GoogleSignIn googleSignIn = GoogleSignIn(
         scopes: ['email', 'profile'],
+        clientId:
+            "217464560084-a05qht7va3a3knarqq4e2j0ar780vr1f.apps.googleusercontent.com",
       );
 
       final GoogleSignInAccount? account = await googleSignIn.signIn();
@@ -41,91 +41,27 @@ class SocialAuthService {
 
       final GoogleSignInAuthentication auth = await account.authentication;
 
-      // Access token could be used to authenticate with your backend
-      final String? accessToken = auth.accessToken;
-      final String? idToken = auth.idToken;
+      // 109764020606022675638
+      // 109764020606022675638
+      // ya29.a0AXeO80RtwTeQ36wGI5nCbUvp_GhcDBi8gURvmkfcl1SZ0DhZXqy3sQKJ9otdhmsb_cBQip92PPy0bfOu_SYJc_XWCpjlZiRWyIyFHwjxVlJtWpb_3tO-hWfYCnkGc6U6YEgUqXlpjfMzjDubttCzxmQeRq7sAY-qr4UD7B-CaCgYKAUASARESFQHGX2MiLimUqhx4wJECz9hm_cpj-g0175
 
-      return SocialUser(
+      SocialUser user = SocialUser(
         name: account.displayName,
         email: account.email,
         avatarUrl: account.photoUrl,
         id: account.id,
-        accessToken: accessToken,
+        accessToken: auth.accessToken,
       );
+
+      print(user);
+
+      return user;
     } catch (e) {
-      rethrow;
-    }
-  }
+      Logger.log("Error");
 
-  /// Facebook Sign In
-  static Future<SocialUser?> signInWithFacebook() async {
-    try {
-      final LoginResult result = await FacebookAuth.instance.login(
-        permissions: ['email', 'public_profile'],
-      );
-
-      switch (result.status) {
-        case LoginStatus.success:
-          final AccessToken accessToken = result.accessToken!;
-          final userData = await FacebookAuth.instance.getUserData(
-            fields: "name,email,picture.width(200)",
-          );
-
-          return SocialUser(
-            name: userData["name"],
-            email: userData["email"],
-            avatarUrl: userData["picture"]["data"]["url"],
-            id: userData["id"],
-            accessToken: accessToken.tokenString,
-          );
-        case LoginStatus.cancelled:
-          // User canceled the sign-in
-          return null;
-        case LoginStatus.failed:
-          throw Exception('Facebook login failed: ${result.message}');
-        case LoginStatus.operationInProgress:
-          // Currently in progress, can ignore or handle
-          return null;
-      }
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  /// Apple Sign In
-  /// On Android, this uses a web popup. On iOS (13+), it uses native Apple Sign In.
-  static Future<SocialUser?> signInWithApple() async {
-    try {
-      if (!Platform.isIOS && !Platform.isMacOS && !Platform.isAndroid) {
-        throw Exception('Sign in with Apple is not supported on this platform');
-      }
-
-      final credential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
-
-      final String? firstName = credential.givenName;
-      final String? lastName = credential.familyName;
-      final String? email = credential.email;
-
-      // Apple sign in might not always provide email/name if user has hidden it previously
-      final String? fullName = (firstName != null && lastName != null)
-          ? '$firstName $lastName'
-          : null;
-
-      return SocialUser(
-        name: fullName,
-        email: email,
-        avatarUrl: null,
-        // Apple does not provide avatar
-        id: credential.userIdentifier,
-        accessToken: credential.identityToken,
-      );
-    } catch (e) {
       rethrow;
     }
   }
 }
+
+

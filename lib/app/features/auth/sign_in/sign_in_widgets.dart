@@ -69,7 +69,9 @@ class __Google extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: context.elevatedButtonStyle,
-      onPressed: () {},
+      onPressed: () {
+        SocialAuthService.signInWithGoogle();
+      },
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
