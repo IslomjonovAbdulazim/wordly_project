@@ -65,7 +65,6 @@ flutter:
     - assets/images/
     - assets/lotties/
 
-
 flutter_icons:
   android: true
   ios: true
