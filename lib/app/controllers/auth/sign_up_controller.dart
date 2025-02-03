@@ -19,9 +19,9 @@ class SignUpController extends GetxController {
   Rx<FocusNode> passwordFocus = FocusNode().obs;
 
   void unFocus() {
+    fullnameFocus.value.unfocus();
     emailFocus.value.unfocus();
     passwordFocus.value.unfocus();
-    fullnameFocus.value.unfocus();
   }
 
   void toggleEye() {

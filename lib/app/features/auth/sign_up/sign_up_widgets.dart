@@ -64,6 +64,9 @@ class __Fullname extends StatelessWidget {
         onTapOutside: (_) {
           controller.unFocus();
         },
+        onSubmitted: (_) {
+          FocusScope.of(context).requestFocus(controller.emailFocus.value);
+        },
         autocorrect: false,
         textInputAction: TextInputAction.next,
         style: context.body,
@@ -96,34 +99,39 @@ class __Email extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<SignUpController>();
-    return TextField(
-      controller: controller.emailController,
-      focusNode: controller.emailFocus.value,
-      autocorrect: false,
-      onTapOutside: (_) {
-        controller.unFocus();
-      },
-      textInputAction: TextInputAction.next,
-      style: context.body,
-      decoration: InputDecoration(
-        filled: true,
-        hintText: "Email",
-        contentPadding: EdgeInsets.only(
-          left: 25,
-          right: 25,
-          top: 15,
-          bottom: 15,
+    return Obx(() {
+      return TextField(
+        controller: controller.emailController,
+        focusNode: controller.emailFocus.value,
+        autocorrect: false,
+        onTapOutside: (_) {
+          controller.unFocus();
+        },
+        onSubmitted: (_) {
+          FocusScope.of(context).requestFocus(controller.passwordFocus.value);
+        },
+        textInputAction: TextInputAction.next,
+        style: context.body,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: "Email",
+          contentPadding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 15,
+            bottom: 15,
+          ),
+          hintStyle: context.body,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
-        hintStyle: context.body,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -138,6 +146,9 @@ class __Password extends StatelessWidget {
         controller: controller.passwordController,
         focusNode: controller.passwordFocus.value,
         onTapOutside: (_) {
+          controller.unFocus();
+        },
+        onSubmitted: (_) {
           controller.unFocus();
         },
         autocorrect: false,

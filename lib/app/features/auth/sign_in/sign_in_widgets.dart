@@ -64,6 +64,9 @@ class __Email extends StatelessWidget {
         controller: controller.emailController,
         focusNode: controller.emailFocus.value,
         onTapOutside: (_) => controller.unFocus(),
+        onSubmitted: (_) {
+          FocusScope.of(context).requestFocus(controller.passwordFocus.value);
+        },
         textInputAction: TextInputAction.next,
         autocorrect: false,
         style: context.body,
@@ -101,6 +104,10 @@ class __Password extends StatelessWidget {
         controller: controller.passwordController,
         focusNode: controller.passwordFocus.value,
         onTapOutside: (_) => controller.unFocus(),
+        onSubmitted: (_) {
+          controller.unFocus();
+        },
+        textInputAction: TextInputAction.done,
         autocorrect: false,
         obscureText: controller.eyeHidden.value,
         style: context.body,
