@@ -53,6 +53,7 @@ class __Field extends StatelessWidget {
         controller.unFocus();
       },
       style: context.body,
+      textInputAction: TextInputAction.done,
       autocorrect: false,
       decoration: InputDecoration(
         filled: true,
@@ -83,7 +84,9 @@ class __Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: context.elevatedButtonStyle,
-      onPressed: () {},
+      onPressed: () {
+        Get.find<ForgotPasswordController>().next();
+      },
       child: Center(
         child: Text(
           "Continue",
