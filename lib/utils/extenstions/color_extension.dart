@@ -13,7 +13,7 @@ extension ColorExtension on BuildContext {
   // — ColorScheme Colors —
 
   /// Primary color. (For example, “red”)
-  Color get red => Theme.of(this).colorScheme.primary;
+  Color get primary => Theme.of(this).colorScheme.primary;
 
   /// Color shown on top of the primary color. (For example, “white”)
   Color get white => Theme.of(this).colorScheme.onPrimary;
@@ -25,7 +25,7 @@ extension ColorExtension on BuildContext {
   /// Color used for text/icons on the surface.
   Color get onSurface => Theme.of(this).colorScheme.onSurface;
 
-  /// Error color. (Typically red as well; if it’s the same as [red], you can omit it.)
+  /// Error color. (Typically red as well; if it’s the same as [primary], you can omit it.)
   Color get error => Theme.of(this).colorScheme.error;
 
   // — Text Colors (if needed) —

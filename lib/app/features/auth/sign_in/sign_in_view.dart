@@ -75,7 +75,7 @@ class _ForgetPassword extends StatelessWidget {
         InkWell(
           borderRadius: BorderRadius.circular(3),
           onTap: () {
-            // context.go(AppRoutePaths.forgetPassword);
+            Get.toNamed(AppRoutes.forgotPassword);
           },
           child: Padding(
             padding: const EdgeInsets.all(3),

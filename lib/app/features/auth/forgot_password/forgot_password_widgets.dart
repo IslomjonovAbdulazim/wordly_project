@@ -25,6 +25,7 @@ class __Texts extends StatelessWidget {
           "Forgot Your Password?",
           style: context.display,
         ),
+        SizedBox(height: 10),
         Text(
           "No worries! Enter your email address, and we'll send you a verification code. Use the code to reset your password and regain access to your account",
           style: context.body,
@@ -105,6 +106,15 @@ class __StepTracker extends StatelessWidget {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
+                  color: context.primary,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              SizedBox(width: 10),
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
                   color: context.textPrimary,
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -114,16 +124,7 @@ class __StepTracker extends StatelessWidget {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: context.textSecondary,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              SizedBox(width: 10),
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: context.textSecondary,
+                  color: context.textPrimary,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
