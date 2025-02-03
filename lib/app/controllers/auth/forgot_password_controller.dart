@@ -17,7 +17,7 @@ class ForgotPasswordController extends GetxController {
   Future<void> next() async {
     final email = emailController.text.trim();
 
-    if (ValidationHelper.isValidEmail(email)) {
+    if (ValidationHelper.isValidEmail(email) == false) {
       Get.closeAllSnackbars();
       Get.snackbar(
         "Invalid Email",
