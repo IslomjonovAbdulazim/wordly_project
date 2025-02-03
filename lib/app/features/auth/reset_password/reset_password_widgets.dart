@@ -55,17 +55,18 @@ class __Password extends StatelessWidget {
         },
         textInputAction: TextInputAction.next,
         autocorrect: false,
-        obscureText: hideEye,
+        obscureText: controller.hideEyePassword.value,
+        style: context.body,
         decoration: InputDecoration(
           filled: true,
-          fillColor: _Colors.lightBlue,
           hintText: "Password",
           suffixIcon: CupertinoButton(
             padding: EdgeInsets.zero,
-            onPressed: ref.read(_hideEyeProvider.notifier).change,
+            onPressed: controller.toggleEyePassword,
             child: Icon(
-              hideEye ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye_fill,
-              color: _Colors.darkBlue,
+              controller.hideEyePassword.value
+                  ? CupertinoIcons.eye_slash_fill
+                  : CupertinoIcons.eye_fill,
               size: 26,
             ),
           ),
@@ -75,19 +76,13 @@ class __Password extends StatelessWidget {
             top: 15,
             bottom: 15,
           ),
-          hintStyle: GoogleFonts.quicksand(
-            color: _Colors.grey,
-            fontWeight: FontWeight.w600,
-          ),
+          hintStyle: context.body,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(
-              color: _Colors.darkBlue,
-            ),
           ),
         ),
       ),
@@ -101,39 +96,40 @@ class __Confirmation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ResetPasswordController>();
-    return TextField(
-      controller: controller,
-      focusNode: focusNode,
-      onTapOutside: (_) {
-        focusNode.unfocus();
-      },
-      autocorrect: false,
-      obscureText: hideEye,
-      decoration: InputDecoration(
-        filled: true,
-        hintText: "Confirm Password",
-        suffixIcon: CupertinoButton(
-          padding: EdgeInsets.zero,
-          onPressed: ref.read(_confirmHideEyeProvider.notifier).change,
-          child: Icon(
-            hideEye ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye_fill,
-            color: _Colors.darkBlue,
-            size: 26,
+    return Obx(
+      () => TextField(
+        controller: controller.confirmPasswordController,
+        focusNode: controller.confirmPasswordFocus.value,
+        onTapOutside: (_) {
+          controller.unFocus();
+        },
+        autocorrect: false,
+        obscureText: controller.hideEyeConfirmPassword.value,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: "Confirm Password",
+          suffixIcon: CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: controller.toggleEyePasswordConfirm,
+            child: Icon(
+              controller.hideEyeConfirmPassword.value ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye_fill,
+              size: 26,
+            ),
           ),
-        ),
-        contentPadding: EdgeInsets.only(
-          left: 25,
-          right: 25,
-          top: 15,
-          bottom: 15,
-        ),
-        hintStyle: context.body,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
+          contentPadding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 15,
+            bottom: 15,
+          ),
+          hintStyle: context.body,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
       ),
     );

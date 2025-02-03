@@ -20,6 +20,14 @@ class ResetPasswordController extends GetxController {
   );
   Rx<FocusNode> confirmPasswordFocus = FocusNode().obs;
 
+  void toggleEyePassword() {
+    hideEyePassword.value = !(hideEyePassword.value);
+  }
+
+  void toggleEyePasswordConfirm() {
+    hideEyeConfirmPassword.value = !(hideEyeConfirmPassword.value);
+  }
+
   void unFocus() {
     passwordFocus.value.unfocus();
     confirmPasswordFocus.value.unfocus();
