@@ -9,7 +9,6 @@ class SocialAuthRequestModel with _$SocialAuthRequestModel {
     required String provider,
     required String id,
     String? name,
-
     String? email,
     String? avatarUrl,
     String? accessToken,
