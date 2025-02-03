@@ -126,7 +126,7 @@ class _GoSignUp extends StatelessWidget {
           InkWell(
             borderRadius: BorderRadius.circular(3),
             onTap: () {
-              // context.go(AppRoutePaths.signUp);
+              Get.toNamed(AppRoutes.signUp);
             },
             child: Padding(
               padding: const EdgeInsets.all(3),
