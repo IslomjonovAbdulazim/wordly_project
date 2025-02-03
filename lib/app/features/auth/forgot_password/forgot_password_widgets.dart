@@ -9,7 +9,11 @@ class __GoBack extends StatelessWidget {
       onPressed: () {
         Get.back();
       },
-      icon: Image.asset(IconConstants.back, height: 20),
+      icon: Image.asset(
+        IconConstants.back,
+        height: 20,
+        color: context.textPrimary,
+      ),
     );
   }
 }
@@ -115,7 +119,7 @@ class __StepTracker extends StatelessWidget {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: context.textPrimary,
+                  color: context.dividerColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -124,7 +128,7 @@ class __StepTracker extends StatelessWidget {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: context.textPrimary,
+                  color: context.dividerColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
