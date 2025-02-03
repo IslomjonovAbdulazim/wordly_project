@@ -43,12 +43,11 @@ class SignInController extends GetxController {
       );
     } else {
       isLoading.value = true;
-      await Future.delayed(Duration(seconds: 2));
       SignInRequestModel model =
           SignInRequestModel(email: email, password: password);
-      final impl = Get.find<AuthRepository>();
+      final api = Get.find<AuthRepository>();
 
-      final result = await impl.signInWithEmail(model);
+      final result = await api.signInWithEmail(model);
 
       isLoading.value = false;
 
