@@ -70,6 +70,7 @@ class __Fullname extends StatelessWidget {
         onSubmitted: (_) {
           FocusScope.of(context).requestFocus(controller.emailFocus.value);
         },
+        textCapitalization: TextCapitalization.words,
         autocorrect: false,
         textInputAction: TextInputAction.next,
         style: context.body,

@@ -11,11 +11,17 @@ class SignUpController extends GetxController {
   RxBool eyeHidden = true.obs;
   RxBool isAgree = false.obs;
 
-  TextEditingController fullnameController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController(
+    text: "Azim",
+  );
   Rx<FocusNode> fullnameFocus = FocusNode().obs;
-  TextEditingController emailController = TextEditingController();
+  TextEditingController emailController = TextEditingController(
+    text: "azim@gmail.com",
+  );
   Rx<FocusNode> emailFocus = FocusNode().obs;
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController(
+    text: "Azim0270",
+  );
   Rx<FocusNode> passwordFocus = FocusNode().obs;
 
   void unFocus() {
