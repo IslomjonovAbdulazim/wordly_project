@@ -1,12 +1,10 @@
-// lib/app/data/providers/auth_api_client.dart
-
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:wordly_project/app/data/models/auth/change_password_request_model.dart';
-import 'package:wordly_project/app/data/models/auth/confirm_otp_request_model.dart';
-import 'package:wordly_project/app/data/models/auth/forgot_password_request_model.dart';
 
 import '../models/auth/auth_model.dart';
+import '../models/auth/change_password_request_model.dart';
+import '../models/auth/confirm_otp_request_model.dart';
+import '../models/auth/forgot_password_request_model.dart';
 
 part 'auth_api_client.g.dart';
 
