@@ -59,31 +59,33 @@ class __Email extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<SignInController>();
-    return TextField(
-      controller: controller.emailController,
-      focusNode: controller.emailFocus.value,
-      onTapOutside: (_) => controller.unFocus(),
-      textInputAction: TextInputAction.next,
-      autocorrect: false,
-      decoration: InputDecoration(
-        filled: true,
-        hintText: "Email",
-        contentPadding: const EdgeInsets.only(
-          left: 25,
-          right: 25,
-          top: 15,
-          bottom: 15,
+    return Obx(() {
+      return TextField(
+        controller: controller.emailController,
+        focusNode: controller.emailFocus.value,
+        onTapOutside: (_) => controller.unFocus(),
+        textInputAction: TextInputAction.next,
+        autocorrect: false,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: "Email",
+          contentPadding: const EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 15,
+            bottom: 15,
+          ),
+          hintStyle: context.body,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
-        hintStyle: context.body,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -93,40 +95,44 @@ class __Password extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<SignInController>();
-    return TextField(
-      controller: controller.emailController,
-      focusNode: controller.emailFocus.value,
-      onTapOutside: (_) => controller.unFocus(),
-      autocorrect: false,
-      obscureText: controller.eyeHidden.value,
-      decoration: InputDecoration(
-        filled: true,
-        hintText: "Password",
-        suffixIcon: CupertinoButton(
-          padding: EdgeInsets.zero,
-          onPressed: controller.toggleEye,
-          child: Icon(
-            CupertinoIcons.eye_fill,
-            size: 26,
+    return Obx(() {
+      return TextField(
+        controller: controller.passwordController,
+        focusNode: controller.passwordFocus.value,
+        onTapOutside: (_) => controller.unFocus(),
+        autocorrect: false,
+        obscureText: controller.eyeHidden.value,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: "Password",
+          suffixIcon: CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: controller.toggleEye,
+            child: Icon(
+              controller.eyeHidden.value
+                  ? CupertinoIcons.eye_slash_fill
+                  : CupertinoIcons.eye_fill,
+              size: 26,
+            ),
+          ),
+          contentPadding: const EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 15,
+            bottom: 15,
+          ),
+          hintStyle: GoogleFonts.quicksand(
+            fontWeight: FontWeight.w600,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
-        contentPadding: const EdgeInsets.only(
-          left: 25,
-          right: 25,
-          top: 15,
-          bottom: 15,
-        ),
-        hintStyle: GoogleFonts.quicksand(
-          fontWeight: FontWeight.w600,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-    );
+      );
+    });
   }
 }

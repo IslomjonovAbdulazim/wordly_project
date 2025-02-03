@@ -39,7 +39,7 @@ class AppPages {
       page: () => SignInPage(),
       bindings: [
         SignInBinding(),
-        AuthBinding(),
+        AuthImplBinding(),
       ],
     ),
     GetPage(

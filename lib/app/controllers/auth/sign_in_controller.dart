@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/data/models/auth/sign_in_request_model.dart';
-import 'package:wordly_project/app/data/repositories/auth_repository_iml.dart';
+import 'package:wordly_project/domain/repositories/auth_respository.dart';
 import 'package:wordly_project/utils/helpers/validation_helper.dart';
 
 import '../../../utils/services/social_auth_service.dart';
@@ -9,11 +9,13 @@ import '../../../utils/services/social_auth_service.dart';
 class SignInController extends GetxController {
   // Observables
   RxBool isLoading = false.obs;
-  RxBool eyeHidden = false.obs;
+  RxBool eyeHidden = true.obs;
 
-  TextEditingController emailController = TextEditingController();
+  TextEditingController emailController =
+      TextEditingController(text: "azim@gmail.com");
   Rx<FocusNode> emailFocus = FocusNode().obs;
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController =
+      TextEditingController(text: "Azim0270");
   Rx<FocusNode> passwordFocus = FocusNode().obs;
 
   void unFocus() {
@@ -28,43 +30,39 @@ class SignInController extends GetxController {
   Future<void> loginWithEmail() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
-    if (ValidationHelper.isValidEmail(email)) {
-      Get.showSnackbar(
-        GetSnackBar(
-          title: "Password Too Weak",
-          message:
-              "Use at least 8 characters with one uppercase letter and one number.",
-        ),
+    if (ValidationHelper.isValidEmail(email) == false) {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Invalid Email",
+        "The email format is incorrect. Please enter a valid email address.",
       );
-    } else if (ValidationHelper.isValidPassword(password)) {
-      Get.showSnackbar(GetSnackBar(
-        title: "Invalid Email",
-        message:
-            "The email format is incorrect. Please enter a valid email address.",
-      ));
+    } else if (ValidationHelper.isValidPassword(password) == false) {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Password Too Weak",
+        "Use at least 8 characters with one uppercase letter and one number.",
+      );
     } else {
       SignInRequestModel model = SignInRequestModel(
         email: email,
         password: password,
       );
 
-      final impl = Get.find<AuthRepositoryImpl>();
-
+      final impl = Get.find<AuthRepository>();
       final result = await impl.signInWithEmail(model);
-
       result.fold(
         (failure) {
+          Get.closeAllSnackbars();
           Get.snackbar(
             "Error",
             failure.message ?? "Something went wrong. Please try again.",
-            snackPosition: SnackPosition.BOTTOM,
           );
         },
         (user) {
+          Get.closeAllSnackbars();
           Get.snackbar(
             "Success",
             "Welcome, ${user.name}!",
-            snackPosition: SnackPosition.BOTTOM,
           );
 
           Get.offAllNamed('/home');
@@ -78,14 +76,18 @@ class SignInController extends GetxController {
       isLoading.value = true;
       final user = await SocialAuthService.signInWithGoogle();
       if (user != null) {
+        Get.closeAllSnackbars();
+        Get.snackbar(
+          "Success",
+          user.toString(),
+        );
         // socialUser.value = user;
       }
     } catch (e) {
-      Get.showSnackbar(
-        GetSnackBar(
-          title: "Error",
-          message: e.toString(),
-        ),
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Error",
+        e.toString(),
       );
     } finally {
       isLoading.value = false;

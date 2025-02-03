@@ -5,7 +5,7 @@ import '../../../domain/repositories/auth_respository.dart';
 import '../../data/providers/auth_api_client.dart';
 import '../../data/repositories/auth_repository_iml.dart';
 
-class AuthBinding extends Bindings {
+class AuthImplBinding extends Bindings {
   @override
   void dependencies() {
     Dio dio = Dio(BaseOptions(
