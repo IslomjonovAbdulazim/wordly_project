@@ -15,6 +15,7 @@ class AppRoutes {
   static const onboarding = "/onboarding";
   static const signIn = "$onboarding/sign_in";
   static const signUp = "$onboarding/sign_up";
+  static const verifyEmail = "$signUp/verify_email";
   static const forgotPassword = "$signIn/forgot_password";
   static const confirmOTP = "$forgotPassword/confirm_otp";
   static const resetPassword = "$forgotPassword/reset_password";

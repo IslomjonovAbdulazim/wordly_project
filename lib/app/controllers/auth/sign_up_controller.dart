@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/data/models/auth/sign_up_request_model.dart';
+import 'package:wordly_project/app/routes/app_routes.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
 import '../../../utils/helpers/validation_helper.dart';
@@ -82,11 +83,11 @@ class SignUpController extends GetxController {
           Get.closeAllSnackbars();
           Get.snackbar("Error",
               failure.message ?? "Something went wrong. Please try again.");
+          Get.toNamed(AppRoutes.verifyEmail);
         },
         (user) {
           Get.closeAllSnackbars();
-          Get.snackbar("Success", "Welcome, ${user.name}!");
-          Get.offAllNamed('/home');
+          Get.toNamed(AppRoutes.verifyEmail);
         },
       );
     }

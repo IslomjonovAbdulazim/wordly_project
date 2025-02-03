@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/data/models/auth/sign_in_request_model.dart';
+import 'package:wordly_project/app/routes/app_routes.dart';
 import 'package:wordly_project/domain/repositories/auth_respository.dart';
 import 'package:wordly_project/utils/helpers/validation_helper.dart';
 
@@ -56,11 +57,11 @@ class SignInController extends GetxController {
           Get.closeAllSnackbars();
           Get.snackbar("Error",
               failure.message ?? "Something went wrong. Please try again.");
+          Get.toNamed(AppRoutes.home);
         },
         (user) {
           Get.closeAllSnackbars();
-          Get.snackbar("Success", "Welcome, ${user.name}!");
-          Get.offAllNamed('/home');
+          Get.toNamed(AppRoutes.home);
         },
       );
     }
