@@ -32,7 +32,10 @@ android {
 
     signingConfigs {
         debug {
-
+            keyAlias "wordly"
+            keyPassword "azim0270"
+            storeFile file("wordly.jks")
+            storePasswrod "azim0270"
         }
     }
 
