@@ -142,6 +142,7 @@ class __Password extends StatelessWidget {
         },
         autocorrect: false,
         obscureText: controller.eyeHidden.value,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           filled: true,
           hintText: "Password",
