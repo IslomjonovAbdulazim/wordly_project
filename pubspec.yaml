@@ -24,8 +24,6 @@ dependencies:
   get: ^4.6.6
   get_storage: ^2.1.1
 
-
-
   # core
   flutter_facebook_auth: ^7.1.1
   sign_in_with_apple: ^6.1.4
