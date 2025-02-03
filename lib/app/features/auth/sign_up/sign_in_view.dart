@@ -22,8 +22,6 @@ class _Buttons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: __Facebook()),
-        SizedBox(width: 10),
         Expanded(child: __Google()),
       ],
     );
@@ -42,11 +40,7 @@ class _Or extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             "Or",
-            style: GoogleFonts.quicksand(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: _Colors.darkGrey,
-            ),
+            style: context.caption,
           ),
         ),
         Expanded(child: Divider(thickness: .5)),
@@ -72,32 +66,23 @@ class _Fields extends StatelessWidget {
   }
 }
 
-class _Privacy extends ConsumerWidget {
+class _Privacy extends StatelessWidget {
   const _Privacy();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    bool val = ref.watch(_checkboxProvider);
+  Widget build(BuildContext context) {
+    final controller = Get.find<SignUpController>();
     return Row(
       children: [
         Transform.scale(
           scale: 1.6,
           child: Checkbox(
-            checkColor: _Colors.blue,
-            activeColor: _Colors.blue,
-            focusColor: _Colors.blue,
-            fillColor: WidgetStateProperty.all(_Colors.lightBlue),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6),
             ),
-            hoverColor: _Colors.blue,
             side: BorderSide.none,
-            onChanged: (val) {
-              if (val != null) {
-                ref.read(_checkboxProvider.notifier).change(val);
-              }
-            },
-            value: val,
+            onChanged: controller.toggleAgreement,
+            value: controller.isAgree.value,
           ),
         ),
         SizedBox(width: 5),
@@ -110,32 +95,22 @@ class _Privacy extends ConsumerWidget {
             children: [
               Text(
                 "I'm agree to the",
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                ),
+                style: context.caption,
               ),
               SizedBox(width: 5),
               Text(
                 "Terms of Service",
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  color: _Colors.blue,
-                ),
+                style: context.code,
               ),
               SizedBox(width: 5),
               Text(
                 "and",
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                ),
+                style: context.caption,
               ),
               SizedBox(width: 5),
               Text(
                 "Privacy Policy",
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  color: _Colors.blue,
-                ),
+                style: context.code,
               ),
             ],
           ),
@@ -151,27 +126,12 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: _Colors.blue,
-        overlayColor: _Colors.darkBlue,
-        shadowColor: _Colors.lightBlue,
-        foregroundColor: _Colors.lightBlue,
-        surfaceTintColor: _Colors.lightBlue,
-        elevation: 0,
-        fixedSize: Size.fromHeight(55),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
+      style: context.elevatedButtonStyle,
       onPressed: () {},
       child: Center(
         child: Text(
           "Create Account",
-          style: GoogleFonts.montserrat(
-            fontSize: 18,
-            color: _Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
+          style: context.elevatedButton,
         ),
       ),
     );
@@ -189,23 +149,19 @@ class _GoSignIn extends StatelessWidget {
         children: [
           Text(
             "Do you have account?",
-            style: GoogleFonts.montserrat(),
+            style: context.body,
           ),
           SizedBox(width: 5),
           InkWell(
             borderRadius: BorderRadius.circular(3),
             onTap: () {
-              context.go(AppRoutePaths.signIn);
+              // context.go(AppRoutePaths.signIn);
             },
             child: Padding(
               padding: const EdgeInsets.all(3),
               child: Text(
                 "Sign in",
-                style: GoogleFonts.montserrat(
-                  fontSize: 15,
-                  color: _Colors.blue,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: context.subtitle,
               ),
             ),
           ),

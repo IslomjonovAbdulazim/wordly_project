@@ -56,62 +56,57 @@ class __Fullname extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      // controller: controller,
-      // focusNode: focusNode,
-      onTapOutside: (_) {
-        focusNode.unfocus();
-      },
-      autocorrect: false,
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: _Colors.lightBlue,
-        hintText: "Fullname",
-        contentPadding: EdgeInsets.only(
-          left: 25,
-          right: 25,
-          top: 15,
-          bottom: 15,
-        ),
-        hintStyle: GoogleFonts.quicksand(
-          color: _Colors.grey,
-          fontWeight: FontWeight.w600,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(
-            color: _Colors.darkBlue,
+    final controller = Get.find<SignUpController>();
+    return Obx(() {
+      return TextField(
+        controller: controller.fullnameController,
+        focusNode: controller.fullnameFocus.value,
+        onTapOutside: (_) {
+          controller.unFocus();
+        },
+        autocorrect: false,
+        textInputAction: TextInputAction.next,
+        style: context.body,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: "Fullname",
+          contentPadding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 15,
+            bottom: 15,
+          ),
+          hintStyle: context.body,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 
-class __Email extends ConsumerWidget {
+class __Email extends StatelessWidget {
   const __Email();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    TextEditingController controller =
-        ref.read(_emailProvider.notifier).controller;
-    FocusNode focusNode = ref.watch(_emailProvider);
+  Widget build(BuildContext context) {
+    final controller = Get.find<SignUpController>();
     return TextField(
-      controller: controller,
-      focusNode: focusNode,
+      controller: controller.emailController,
+      focusNode: controller.emailFocus.value,
       autocorrect: false,
       onTapOutside: (_) {
-        focusNode.unfocus();
+        controller.unFocus();
       },
       textInputAction: TextInputAction.next,
+      style: context.body,
       decoration: InputDecoration(
         filled: true,
-        fillColor: _Colors.lightBlue,
         hintText: "Email",
         contentPadding: EdgeInsets.only(
           left: 25,
@@ -119,50 +114,43 @@ class __Email extends ConsumerWidget {
           top: 15,
           bottom: 15,
         ),
-        hintStyle: GoogleFonts.quicksand(
-          color: _Colors.grey,
-          fontWeight: FontWeight.w600,
-        ),
+        hintStyle: context.body,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(
-            color: _Colors.darkBlue,
-          ),
         ),
       ),
     );
   }
 }
 
-class __Password extends ConsumerWidget {
+class __Password extends StatelessWidget {
   const __Password();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    TextEditingController controller =
-        ref.read(_passwordProvider.notifier).controller;
-    FocusNode focusNode = ref.watch(_passwordProvider);
-    bool hideEye = ref.watch(_hideEyeProvider);
+  Widget build(BuildContext context) {
+    final controller = Get.find<SignUpController>();
     return TextField(
-      controller: controller,
-      focusNode: focusNode,
+      controller: controller.passwordController,
+      focusNode: controller.passwordFocus.value,
       onTapOutside: (_) {
-        focusNode.unfocus();
+        controller.unFocus();
       },
       autocorrect: false,
-      obscureText: hideEye,
+      obscureText: controller.eyeHidden.value,
       decoration: InputDecoration(
         filled: true,
         hintText: "Password",
         suffixIcon: CupertinoButton(
           padding: EdgeInsets.zero,
-          // onPressed: ref.read(_hideEyeProvider.notifier).change,
+          onPressed: controller.toggleEye,
           child: Icon(
-            hideEye ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye_fill,
+            controller.eyeHidden.value
+                ? CupertinoIcons.eye_slash_fill
+                : CupertinoIcons.eye_fill,
             size: 26,
           ),
         ),
