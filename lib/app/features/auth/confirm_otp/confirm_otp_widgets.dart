@@ -59,11 +59,10 @@ class __Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ConfirmOtpController>();
     return ElevatedButton(
       style: context.elevatedButtonStyle,
-      onPressed: () {
-
-      },
+      onPressed: controller.next,
       child: Center(
         child: Text(
           "Continue",
@@ -81,8 +80,11 @@ class __OTPField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ConfirmOtpController>();
     return PinCodeTextField(
       appContext: context,
+      controller: controller.pinController,
+      focusNode: controller.pinFocus.value,
       length: 5,
       animationType: AnimationType.scale,
       animationDuration: const Duration(milliseconds: 300),

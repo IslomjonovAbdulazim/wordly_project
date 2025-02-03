@@ -39,15 +39,14 @@ class ForgotPasswordController extends GetxController {
       isLoading.value = false;
 
       result.fold(
-        (failure) {
+        (failure) async {
           Get.closeAllSnackbars();
           Get.snackbar("Error",
               failure.message ?? "Something went wrong. Please try again.");
-          Get.toNamed(AppRoutes.confirmOTP);
+          Get.toNamed(AppRoutes.confirmOTP); // todo
         },
-        (user) {
+        (user) async {
           Get.closeAllSnackbars();
-          Get.snackbar("SMS Code sent", email);
           Get.toNamed(AppRoutes.confirmOTP);
         },
       );

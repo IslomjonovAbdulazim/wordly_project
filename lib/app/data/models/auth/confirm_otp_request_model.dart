@@ -7,7 +7,7 @@ part 'confirm_otp_request_model.g.dart';
 class ConfirmOtpRequestModel with _$ConfirmOtpRequestModel {
   const factory ConfirmOtpRequestModel({
     required String email,
-    required String newPassword,
+    required String otp,
 }) = _ConfirmOtpRequestModel;
 
   factory ConfirmOtpRequestModel.fromJson(Map<String, dynamic> json) => _$ConfirmOtpRequestModelFromJson(json);
