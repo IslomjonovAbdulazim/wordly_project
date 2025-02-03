@@ -66,16 +66,17 @@ class __Email extends StatelessWidget {
         onTapOutside: (_) => controller.unFocus(),
         textInputAction: TextInputAction.next,
         autocorrect: false,
+        style: context.body,
         decoration: InputDecoration(
           filled: true,
           hintText: "Email",
+          hintStyle: context.body,
           contentPadding: const EdgeInsets.only(
             left: 25,
             right: 25,
             top: 15,
             bottom: 15,
           ),
-          hintStyle: context.body,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide.none,
@@ -102,9 +103,11 @@ class __Password extends StatelessWidget {
         onTapOutside: (_) => controller.unFocus(),
         autocorrect: false,
         obscureText: controller.eyeHidden.value,
+        style: context.body,
         decoration: InputDecoration(
           filled: true,
           hintText: "Password",
+          hintStyle: context.body,
           suffixIcon: CupertinoButton(
             padding: EdgeInsets.zero,
             onPressed: controller.toggleEye,
@@ -120,9 +123,6 @@ class __Password extends StatelessWidget {
             right: 25,
             top: 15,
             bottom: 15,
-          ),
-          hintStyle: GoogleFonts.quicksand(
-            fontWeight: FontWeight.w600,
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),

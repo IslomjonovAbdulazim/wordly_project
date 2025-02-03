@@ -11,11 +11,9 @@ class SignInController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool eyeHidden = true.obs;
 
-  TextEditingController emailController =
-      TextEditingController(text: "azim@gmail.com");
+  TextEditingController emailController = TextEditingController();
   Rx<FocusNode> emailFocus = FocusNode().obs;
-  TextEditingController passwordController =
-      TextEditingController(text: "Azim0270");
+  TextEditingController passwordController = TextEditingController();
   Rx<FocusNode> passwordFocus = FocusNode().obs;
 
   void unFocus() {
@@ -70,6 +68,7 @@ class SignInController extends GetxController {
   }
 
   Future<void> loginWithGoogle() async {
+    if (isLoading.value) return;
     try {
       isLoading.value = true;
       final user = await SocialAuthService.signInWithGoogle();
