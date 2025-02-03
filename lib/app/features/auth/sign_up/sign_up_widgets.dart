@@ -31,9 +31,12 @@ class __Google extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SignUpController>();
     return ElevatedButton(
       style: context.elevatedButtonStyle,
-      onPressed: () {},
+      onPressed: () {
+        controller.loginWithGoogle();
+      },
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -75,8 +75,8 @@ class SignInController extends GetxController {
       if (user != null) {
         Get.closeAllSnackbars();
         Get.snackbar(
-          "Success",
-          user.toString(),
+          "Logged In",
+          "${user.email}\n${user.name}",
         );
         // socialUser.value = user;
       }
