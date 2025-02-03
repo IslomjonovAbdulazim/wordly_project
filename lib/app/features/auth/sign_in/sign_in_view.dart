@@ -22,8 +22,6 @@ class _Buttons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: __Facebook()),
-        SizedBox(width: 10),
         Expanded(child: __Google()),
       ],
     );
@@ -97,9 +95,10 @@ class _LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SignInController>();
     return ElevatedButton(
       style: context.elevatedButtonStyle,
-      onPressed: () {},
+      onPressed: controller.loginWithEmail,
       child: Center(
         child: Text(
           "Log In",

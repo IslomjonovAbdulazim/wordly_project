@@ -1,8 +1,5 @@
 part of "imports.dart";
 
-///
-/// TITLE
-///
 class __Title extends StatelessWidget {
   const __Title();
 
@@ -15,11 +12,8 @@ class __Title extends StatelessWidget {
   }
 }
 
-///
-/// DESCRIPTION
-///
 class __Description extends StatelessWidget {
-  const __Description({Key? key}) : super(key: key);
+  const __Description();
 
   @override
   Widget build(BuildContext context) {
@@ -31,46 +25,16 @@ class __Description extends StatelessWidget {
   }
 }
 
-///
-/// FACEBOOK BUTTON
-///
-class __Facebook extends StatelessWidget {
-  const __Facebook();
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: context.elevatedButtonStyle,
-      onPressed: () {},
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(IconConstants.facebook, height: 25),
-            const SizedBox(width: 5),
-            Text(
-              "Facebook",
-              style: context.elevatedButton,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-///
-/// GOOGLE BUTTON
-///
 class __Google extends StatelessWidget {
   const __Google();
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SignInController>();
     return ElevatedButton(
       style: context.elevatedButtonStyle,
       onPressed: () {
-        SocialAuthService.signInWithGoogle();
+        controller.loginWithGoogle();
       },
       child: Center(
         child: Row(
@@ -89,31 +53,20 @@ class __Google extends StatelessWidget {
   }
 }
 
-///
-/// EMAIL TEXT FIELD
-///
-/// Now a pure StatelessWidget.
-/// We receive the controller and focusNode from outside.
 class __Email extends StatelessWidget {
-  // final TextEditingController controller;
-  // final FocusNode focusNode;
-
-  // const __Email({
-  //   // required this.controller,
-  //   // required this.focusNode,
-  // });
+  const __Email();
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SignInController>();
     return TextField(
-      // controller: controller,
-      // focusNode: focusNode,
-      // onTapOutside: (_) => focusNode.unfocus(),
+      controller: controller.emailController,
+      focusNode: controller.emailFocus.value,
+      onTapOutside: (_) => controller.unFocus(),
       textInputAction: TextInputAction.next,
       autocorrect: false,
       decoration: InputDecoration(
         filled: true,
-        // fillColor: _Colors.lightBlue,
         hintText: "Email",
         contentPadding: const EdgeInsets.only(
           left: 25,
@@ -139,20 +92,19 @@ class __Password extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SignInController>();
     return TextField(
-      // controller: controller,
-      // focusNode: focusNode,
+      controller: controller.emailController,
+      focusNode: controller.emailFocus.value,
+      onTapOutside: (_) => controller.unFocus(),
       autocorrect: false,
-      // onTapOutside: (_) => focusNode.unfocus(),
-      // obscureText: hideEye,
+      obscureText: controller.eyeHidden.value,
       decoration: InputDecoration(
         filled: true,
-        // fillColor: _Colors.lightBlue,
         hintText: "Password",
         suffixIcon: CupertinoButton(
           padding: EdgeInsets.zero,
-          // onPressed: onToggleEye,
-          onPressed: () {},
+          onPressed: controller.toggleEye,
           child: Icon(
             CupertinoIcons.eye_fill,
             size: 26,
