@@ -6,6 +6,7 @@ part 'social_auth_request_model.g.dart';
 @freezed
 class SocialAuthRequestModel with _$SocialAuthRequestModel {
   const factory SocialAuthRequestModel({
+    required String provider,
     required String id,
     String? name,
     String? email,

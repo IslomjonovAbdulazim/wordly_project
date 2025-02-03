@@ -2,6 +2,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:wordly_project/utils/helpers/logger.dart';
 
 class SocialUser {
+  final String? provider;
   final String? name;
   final String? email;
   final String? avatarUrl;
@@ -9,6 +10,7 @@ class SocialUser {
   final String? accessToken;
 
   SocialUser({
+    this.provider,
     this.name,
     this.email,
     this.avatarUrl,
@@ -26,7 +28,6 @@ class SocialAuthService {
   /// Google Sign In
   static Future<SocialUser?> signInWithGoogle() async {
     try {
-      Logger.log("Boshlandi");
       final GoogleSignIn googleSignIn = GoogleSignIn(
         scopes: ['email', 'profile'],
         clientId:
@@ -42,6 +43,7 @@ class SocialAuthService {
       final GoogleSignInAuthentication auth = await account.authentication;
 
       return SocialUser(
+        provider: "google",
         name: account.displayName,
         email: account.email,
         avatarUrl: account.photoUrl,
@@ -49,8 +51,6 @@ class SocialAuthService {
         accessToken: auth.accessToken,
       );
     } catch (e) {
-      Logger.log("Error");
-
       rethrow;
     }
   }
