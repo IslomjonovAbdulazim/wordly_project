@@ -28,6 +28,7 @@ class SignInController extends GetxController {
   }
 
   Future<void> loginWithEmail() async {
+    if (isLoading.value) return;
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
     if (ValidationHelper.isValidEmail(email) == false) {
@@ -43,7 +44,8 @@ class SignInController extends GetxController {
         "Use at least 8 characters with one uppercase letter and one number.",
       );
     } else {
-      if (isLoading.value) return;
+      isLoading.value = true;
+      await Future.delayed(Duration(seconds: 2));
       SignInRequestModel model =
           SignInRequestModel(email: email, password: password);
       final impl = Get.find<AuthRepository>();
@@ -54,10 +56,12 @@ class SignInController extends GetxController {
 
       result.fold(
         (failure) {
+          Get.closeAllSnackbars();
           Get.snackbar("Error",
               failure.message ?? "Something went wrong. Please try again.");
         },
         (user) {
+          Get.closeAllSnackbars();
           Get.snackbar("Success", "Welcome, ${user.name}!");
           Get.offAllNamed('/home');
         },
