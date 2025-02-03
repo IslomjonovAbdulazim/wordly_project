@@ -5,11 +5,13 @@ import 'package:wordly_project/app/bindings/auth/forgot_password_binding.dart';
 import 'package:wordly_project/app/bindings/auth/onboarding_binding.dart';
 import 'package:wordly_project/app/bindings/auth/sign_in_binding.dart';
 import 'package:wordly_project/app/bindings/auth/sign_up_binding.dart';
+import 'package:wordly_project/app/bindings/home/home_binding.dart';
 import 'package:wordly_project/app/features/auth/confirm_otp/imports.dart';
 import 'package:wordly_project/app/features/auth/forgot_password/imports.dart';
 import 'package:wordly_project/app/features/auth/onboarding/imports.dart';
 import 'package:wordly_project/app/features/auth/sign_in/imports.dart';
 import 'package:wordly_project/app/features/auth/sign_up/imports.dart';
+import 'package:wordly_project/app/features/home/home/imports.dart';
 import 'package:wordly_project/app/features/screens/splash/splash_page.dart';
 
 import '../bindings/todo_binding.dart';
@@ -31,6 +33,14 @@ class AppPages {
     GetPage(
       name: AppRoutes.offline,
       page: () => OfflinePage(),
+    ),
+
+    /// home
+
+    GetPage(
+      name: AppRoutes.home,
+      page: () => HomePage(),
+      binding: HomeBinding(),
     ),
 
     /// auth
