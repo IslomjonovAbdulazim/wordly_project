@@ -5,7 +5,6 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<SignUpController>();
     return Scaffold(
       body: Stack(
         children: [
@@ -37,7 +36,7 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
           ),
-          Obx(() => LoadingPage(controller.isLoading.value)),
+          Obx(() => LoadingPage(Get.find<SignUpController>().isLoading.value)),
         ],
       ),
     );

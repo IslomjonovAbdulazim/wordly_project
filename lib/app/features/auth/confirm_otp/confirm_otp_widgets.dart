@@ -23,30 +23,33 @@ class __Texts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ConfirmOtpController>();
     return Column(
       children: [
         Text(
           "Verify Your Email",
           style: context.display,
         ),
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            children: [
-              TextSpan(
-                text: "We’ve sent a verification code to\n",
-                style: context.body,
-              ),
-              TextSpan(
-                text: "islomjonov.abdulazim.27@gmail.com",
-                style: context.code,
-              ),
-              TextSpan(
-                text:
-                    "\nPlease enter the code below to continue and reset your password.",
-                style: context.body,
-              ),
-            ],
+        Obx(
+          () => RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "We’ve sent a verification code to\n",
+                  style: context.body,
+                ),
+                TextSpan(
+                  text: controller.email.value,
+                  style: context.code,
+                ),
+                TextSpan(
+                  text:
+                      "\nPlease enter the code below to continue and reset your password.",
+                  style: context.body,
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -83,6 +86,7 @@ class __OTPField extends StatelessWidget {
     final controller = Get.find<ConfirmOtpController>();
     return PinCodeTextField(
       appContext: context,
+      autoFocus: true,
       controller: controller.pinController,
       focusNode: controller.pinFocus.value,
       length: 5,
@@ -105,9 +109,6 @@ class __OTPField extends StatelessWidget {
       ),
       enableActiveFill: true,
       keyboardType: TextInputType.number,
-      onChanged: (value) {
-        print("Current value: $value");
-      },
       onCompleted: onCompleted,
     );
   }

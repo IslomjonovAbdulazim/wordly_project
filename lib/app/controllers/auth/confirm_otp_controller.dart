@@ -2,19 +2,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/data/models/auth/confirm_otp_request_model.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
+import 'package:wordly_project/utils/helpers/logger.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
 
 class ConfirmOtpController extends GetxController {
   RxBool isLoading = false.obs;
+  RxString email = "".obs;
   TextEditingController pinController = TextEditingController();
   Rx<FocusNode> pinFocus = FocusNode().obs;
+
+  void setEmail(String val) {
+    Logger.log(val);
+    email.value = val;
+  }
 
   void unFocus() {
     pinFocus.value.unfocus();
   }
 
   Future<void> next() async {
+    Logger.log(Get.arguments.toString());
     final otp = pinController.text.trim();
     if (otp.length != 5) {
       Get.closeAllSnackbars();
