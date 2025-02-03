@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:wordly_project/app/controllers/auth/confirm_otp_controller.dart';
 import 'package:wordly_project/app/data/models/auth/forgot_password_request_model.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
-import 'package:wordly_project/utils/helpers/logger.dart';
 import 'package:wordly_project/utils/helpers/validation_helper.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
@@ -35,8 +34,6 @@ class ForgotPasswordController extends GetxController {
           ForgotPasswordRequestModel(email: email);
       final api = Get.find<AuthRepository>();
       final result = await api.forgotPassword(request);
-
-      await Future.delayed(Duration(seconds: 1)); // todo delete
 
       isLoading.value = false;
       Get.find<ConfirmOtpController>().setEmail(email);

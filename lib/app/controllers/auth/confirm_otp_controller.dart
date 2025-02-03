@@ -32,7 +32,7 @@ class ConfirmOtpController extends GetxController {
       );
       isLoading.value = true;
       ConfirmOtpRequestModel model =
-          ConfirmOtpRequestModel(email: "", otp: otp);
+          ConfirmOtpRequestModel(email: email.value, otp: otp);
       final api = Get.find<AuthRepository>();
 
       final result = await api.confirmOtp(model);

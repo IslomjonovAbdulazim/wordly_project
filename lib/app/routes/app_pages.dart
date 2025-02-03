@@ -60,6 +60,7 @@ class AppPages {
       page: () => ForgotPasswordPage(),
       bindings: [
         ForgotPasswordBinding(),
+        ConfirmOtpBinding(),
         AuthImplBinding(),
       ],
     ),
