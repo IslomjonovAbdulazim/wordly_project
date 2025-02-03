@@ -66,7 +66,6 @@ class SignUpController extends GetxController {
       );
     } else {
       isLoading.value = true;
-      await Future.delayed(Duration(seconds: 2));
       SignUpRequestModel model = SignUpRequestModel(
         email: email,
         password: password,
