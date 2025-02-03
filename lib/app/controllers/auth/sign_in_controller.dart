@@ -48,7 +48,6 @@ class SignInController extends GetxController {
         password: password,
       );
 
-
       final impl = Get.find<AuthRepository>();
       final result = await impl.signInWithEmail(model);
       result.fold(
