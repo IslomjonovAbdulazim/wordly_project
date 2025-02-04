@@ -10,8 +10,14 @@ class ValidationHelper {
 
   /// Check if the password is strong enough.
   static bool isValidPassword(String password) {
-    // Example: at least 8 characters, 1 number, 1 uppercase.
-    final regex = RegExp(r'^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$');
+    // Requires:
+    // - At least 8 characters
+    // - At least 1 uppercase letter
+    // - At least 1 digit
+    // - At least 1 special character (!@#$%^&*(),.?":{}|<>)
+    final regex = RegExp(
+        r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$');
+
     return regex.hasMatch(password);
   }
 }
