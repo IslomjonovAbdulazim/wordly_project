@@ -13,8 +13,8 @@ abstract class HomeApiClient {
   factory HomeApiClient(Dio dio, {String baseUrl}) = _HomeApiClient;
 
   @GET(ApiConstants.books)
-  Future<List<BookResponseModel>> books();
+  Future<List<BookResponseModel>> getBooks();
 
   @GET(ApiConstants.units)
-  Future<List<UnitResponseModel>> getUnits(@Path("book_id") int bookId);
+  Future<List<UnitResponseModel>> getUnits(@Path("book_id") int bookID);
 }

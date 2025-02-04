@@ -42,7 +42,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }
@@ -58,7 +58,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }
@@ -72,7 +72,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }
@@ -88,7 +88,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }
@@ -102,7 +102,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }
@@ -116,7 +116,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }

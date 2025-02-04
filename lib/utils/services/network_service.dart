@@ -51,7 +51,7 @@ class NetworkService {
       Logger.error("Dio GET error: ${e.message}");
       return Left(NetworkFailure(
         message: e.message ?? "Error",
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }
@@ -70,7 +70,7 @@ class NetworkService {
       Logger.error("Dio POST error: ${e.message}");
       return Left(NetworkFailure(
         message: e.message ?? "Error",
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }
@@ -89,7 +89,7 @@ class NetworkService {
       Logger.error("Dio PUT error: ${e.message}");
       return Left(NetworkFailure(
         message: e.message ?? "Error",
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }
@@ -108,7 +108,7 @@ class NetworkService {
       Logger.error("Dio DELETE error: ${e.message}");
       return Left(NetworkFailure(
         message: e.message ?? "Error",
-        code: e.response?.statusCode,
+        statusCode: e.response?.statusCode,
       ));
     }
   }

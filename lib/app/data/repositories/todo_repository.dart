@@ -32,7 +32,7 @@ class TodoRepositoryImpl implements TodoRepository {
       return Left(
         NetworkFailure(
           message: e.message ?? "Error",
-          code: e.response?.statusCode,
+          statusCode: e.response?.statusCode,
         ),
       );
     }
@@ -49,7 +49,7 @@ class TodoRepositoryImpl implements TodoRepository {
       return Left(
         NetworkFailure(
           message: e.message ?? "Error",
-          code: e.response?.statusCode,
+          statusCode: e.response?.statusCode,
         ),
       );
     }
@@ -65,7 +65,7 @@ class TodoRepositoryImpl implements TodoRepository {
       return Left(
         NetworkFailure(
           message: e.message ?? "Error",
-          code: e.response?.statusCode,
+          statusCode: e.response?.statusCode,
         ),
       );
     }
@@ -80,7 +80,7 @@ class TodoRepositoryImpl implements TodoRepository {
       return Left(
         NetworkFailure(
           message: e.message ?? "Error",
-          code: e.response?.statusCode,
+          statusCode: e.response?.statusCode,
         ),
       );
     }
