@@ -1,44 +1,16 @@
 part of 'imports.dart';
 
-// Example: each tab is a navigator
 class MainNavPage extends StatelessWidget {
   const MainNavPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final MainNavController navController = Get.put(MainNavController());
-
+    final navController = Get.find<MainNavController>();
     return Obx(() {
       return Scaffold(
         body: IndexedStack(
           index: navController.currentIndex.value,
-          children: [
-            Navigator(
-              key: Get.nestedKey(1),
-              onGenerateRoute: (settings) {
-                if (settings.name == '/') {
-                  return GetPageRoute(
-                    settings: settings,
-                    page: () => HomePage(),
-                  );
-                }
-                // Additional sub-routes for tab 1 here
-              },
-            ),
-            Navigator(
-              key: Get.nestedKey(2),
-              onGenerateRoute: (settings) {
-                if (settings.name == '/') {
-                  return GetPageRoute(
-                    settings: settings,
-                    page: () => SearchPage(),
-                  );
-                }
-                // Additional sub-routes for tab 2 here
-              },
-            ),
-            // ... Add more if needed
-          ],
+          children: navController.pages,
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: navController.currentIndex.value,
@@ -50,9 +22,13 @@ class MainNavPage extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
-              label: 'Search',
+              label: 'Leaderboard',
             ),
-            // ...
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Profile',
+            ),
+            // Add more items if needed
           ],
         ),
       );
