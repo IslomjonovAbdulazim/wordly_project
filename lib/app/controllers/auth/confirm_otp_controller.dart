@@ -22,7 +22,6 @@ class ConfirmOtpController extends GetxController {
   }
 
   Future<void> next() async {
-    Logger.log(Get.arguments.toString());
     final otp = pinController.text.trim();
     if (otp.length != 5) {
       Get.closeAllSnackbars();
