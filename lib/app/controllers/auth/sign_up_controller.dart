@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:wordly_project/app/controllers/auth/verify_email_controller.dart';
 import 'package:wordly_project/app/data/models/auth/sign_up_request_model.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
+import 'package:wordly_project/utils/helpers/status_code_helper.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
 import '../../../utils/helpers/validation_helper.dart';
@@ -60,15 +61,13 @@ class SignUpController extends GetxController {
         "Invalid Email",
         "The email format is incorrect. Please enter a valid email address.",
       );
-    }
-    // else if (ValidationHelper.isValidPassword(password) == false) {
-    //   Get.closeAllSnackbars();
-    //   Get.snackbar(
-    //     "Password Too Weak",
-    //     "Use at least 8 characters with one uppercase letter and one number.",
-    //   );
-    // }
-    else {
+    } else if (ValidationHelper.isValidPassword(password) == false) {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Password Too Weak",
+        "Password must be at least 8 characters long and include at least one uppercase letter and one number.",
+      );
+    } else {
       isLoading.value = true;
       SignUpRequestModel model = SignUpRequestModel(
         email: email,
@@ -85,13 +84,15 @@ class SignUpController extends GetxController {
       result.fold(
         (failure) {
           Get.closeAllSnackbars();
-          // Get.snackbar("Error",
-          //     failure.message ?? "Something went wrong. Please try again.");
-          Get.toNamed(AppRoutes.verifyEmail);
+          StatusCodeService.showSnackbar(failure.statusCode ?? 500);
         },
-        (user) {
-          Get.closeAllSnackbars();
-          Get.toNamed(AppRoutes.verifyEmail);
+        (code) {
+          if (code <= 250) {
+            Get.toNamed(AppRoutes.verifyEmail);
+          } else {
+            Get.closeAllSnackbars();
+            StatusCodeService.showSnackbar(code);
+          }
         },
       );
     }

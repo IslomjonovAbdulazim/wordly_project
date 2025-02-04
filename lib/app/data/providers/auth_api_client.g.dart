@@ -10,7 +10,7 @@ part of 'auth_api_client.dart';
 
 class _AuthApiClient implements AuthApiClient {
   _AuthApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= '5.42.220.153:8003';
+    baseUrl ??= 'http://5.42.220.153:8003/';
   }
 
   final Dio _dio;
@@ -48,13 +48,13 @@ class _AuthApiClient implements AuthApiClient {
   }
 
   @override
-  Future<AuthModel> signUpWithEmail(Map<String, dynamic> body) async {
+  Future<dynamic> signUpWithEmail(Map<String, dynamic> body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _options = _setStreamType<AuthModel>(
+    final _options = _setStreamType<dynamic>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -64,14 +64,8 @@ class _AuthApiClient implements AuthApiClient {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late AuthModel _value;
-    try {
-      _value = AuthModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
     return _value;
   }
 

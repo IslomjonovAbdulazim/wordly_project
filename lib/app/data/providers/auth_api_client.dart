@@ -16,7 +16,7 @@ abstract class AuthApiClient {
   Future<AuthModel> signInWithEmail(@Body() Map<String, dynamic> body);
 
   @POST(ApiConstants.register)
-  Future<void> signUpWithEmail(@Body() Map<String, dynamic> body);
+  Future<dynamic> signUpWithEmail(@Body() Map<String, dynamic> body);
 
   @POST(ApiConstants.verifyOTP)
   Future<ForgotPasswordRequestModel> forgotPassword(

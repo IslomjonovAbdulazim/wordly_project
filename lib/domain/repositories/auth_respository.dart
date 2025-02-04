@@ -17,7 +17,7 @@ abstract class AuthRepository {
     SignInRequestModel request,
   );
 
-  Future<Either<NetworkFailure, int>> signUpWithEmail(
+  Future<Either<NetworkFailure, dynamic>> signUpWithEmail(
     SignUpRequestModel request,
   );
 

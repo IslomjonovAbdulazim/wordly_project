@@ -48,11 +48,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<NetworkFailure, int>> signUpWithEmail(
+  Future<Either<NetworkFailure, dynamic>> signUpWithEmail(
       SignUpRequestModel request) async {
     try {
-      await apiClient.signUpWithEmail(request.toJson());
-      return Right(200);
+      final res = await apiClient.signUpWithEmail(request.toJson());
+      return Right(res);
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,

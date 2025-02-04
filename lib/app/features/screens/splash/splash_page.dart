@@ -10,7 +10,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(Duration.zero, () {
       if (TokenService.to.hasToken) {
-        Get.offAllNamed(AppRoutes.todo);
+        Get.offAllNamed(AppRoutes.main);
       } else {
         Get.offAllNamed(AppRoutes.onboarding);
       }
