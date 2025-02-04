@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 
 import '../../../domain/entities/auth_user.dart';
 import '../../../domain/repositories/auth_respository.dart';
+import '../../../utils/constants/api_constants.dart';
 import '../../../utils/errors/network_failure.dart';
 import '../../../utils/helpers/logger.dart';
 import '../models/auth/auth_model.dart';
@@ -25,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
       : apiClient = AuthApiClient(
           dio ??
               Dio(BaseOptions(
-                baseUrl: "http://10.10.4.65:8001",
+                baseUrl: ApiConstants.baseURL,
                 connectTimeout: Duration(seconds: 30),
                 receiveTimeout: Duration(seconds: 30),
               )),

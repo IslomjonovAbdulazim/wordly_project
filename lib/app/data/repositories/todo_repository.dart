@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 
 import '../../../domain/entities/todo.dart';
 import '../../../domain/repositories/todo_repository.dart';
+import '../../../utils/constants/api_constants.dart';
 import '../../../utils/errors/network_failure.dart';
 import '../models/todo_model.dart';
 import '../providers/api_client.dart';
@@ -15,7 +16,7 @@ class TodoRepositoryImpl implements TodoRepository {
       : apiClient = ApiClient(
           dio ??
               Dio(BaseOptions(
-                baseUrl: "https://api.example.com",
+                baseUrl: ApiConstants.baseURL,
                 connectTimeout: Duration(seconds: 30),
                 receiveTimeout: Duration(seconds: 30),
               )),

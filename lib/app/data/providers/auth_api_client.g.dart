@@ -10,7 +10,7 @@ part of 'auth_api_client.dart';
 
 class _AuthApiClient implements AuthApiClient {
   _AuthApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'http://10.10.4.65:8001';
+    baseUrl ??= '5.42.220.153:8003';
   }
 
   final Dio _dio;
@@ -30,7 +30,7 @@ class _AuthApiClient implements AuthApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/auth/signin',
+            '/api/v1/auth/api/token/',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -88,7 +88,7 @@ class _AuthApiClient implements AuthApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/auth/forgotPassword',
+            '/api/v1/auth/verify-otp',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -141,7 +141,7 @@ class _AuthApiClient implements AuthApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/auth/changePassword',
+            '/api/v1/auth/auth/reset-password/',
             queryParameters: queryParameters,
             data: _data,
           )

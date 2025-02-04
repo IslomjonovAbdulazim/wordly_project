@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
+import '../../../utils/constants/api_constants.dart';
 import '../../data/providers/auth_api_client.dart';
 import '../../data/repositories/auth_repository_iml.dart';
 
@@ -9,7 +10,7 @@ class AuthImplBinding extends Bindings {
   @override
   void dependencies() {
     Dio dio = Dio(BaseOptions(
-      baseUrl: "http://10.10.4.65:8001",
+      baseUrl: ApiConstants.baseURL,
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
     ));

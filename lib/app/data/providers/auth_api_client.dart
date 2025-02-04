@@ -1,38 +1,36 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../../utils/constants/api_constants.dart';
 import '../models/auth/auth_model.dart';
 import '../models/auth/change_password_request_model.dart';
-import '../models/auth/confirm_otp_request_model.dart';
 import '../models/auth/forgot_password_request_model.dart';
 
 part 'auth_api_client.g.dart';
 
-@RestApi(baseUrl: "http://10.10.4.65:8001")
+@RestApi(baseUrl: ApiConstants.baseURL)
 abstract class AuthApiClient {
   factory AuthApiClient(Dio dio, {String baseUrl}) = _AuthApiClient;
 
   // Sign in with email
-  @POST("/auth/signin")
+  @POST(ApiConstants.token)
   Future<AuthModel> signInWithEmail(@Body() Map<String, dynamic> body);
 
   // Sign up with email
-  @POST("/api/v1/auth/register/")
+  @POST(ApiConstants.register)
   Future<AuthModel> signUpWithEmail(@Body() Map<String, dynamic> body);
 
   // Forgot password: send OTP
-  @POST("/auth/forgotPassword")
+  @POST(ApiConstants.verifyOTP)
   Future<ForgotPasswordRequestModel> forgotPassword(
       @Body() Map<String, dynamic> body);
 
   // Confirm OTP
-  @POST("/api/v1/auth/register/check")
-  Future<HttpResponse<dynamic>> confirmOtp(
-      @Body() Map<String, dynamic> body
-      );
+  @POST(ApiConstants.registerCheck)
+  Future<HttpResponse<dynamic>> confirmOtp(@Body() Map<String, dynamic> body);
 
   // Change password
-  @POST("/auth/changePassword")
+  @POST(ApiConstants.resetPassword)
   Future<ChangePasswordRequestModel> changePassword(
       @Body() Map<String, dynamic> body);
 
