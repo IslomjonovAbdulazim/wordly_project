@@ -13,7 +13,6 @@ class ConfirmOtpController extends GetxController {
   Rx<FocusNode> pinFocus = FocusNode().obs;
 
   void setEmail(String val) {
-    Logger.log(val);
     email.value = val;
   }
 
