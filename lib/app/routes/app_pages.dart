@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:wordly_project/app/features/leaderboard/leaderboard/imports.dart';
 
 import '../bindings/auth/auth_impl_binding.dart';
 import '../bindings/auth/confirm_otp_binding.dart';
@@ -37,7 +38,7 @@ class AppPages {
       page: () => OfflinePage(),
     ),
 
-    /// home
+    /// HOME
 
     GetPage(
       name: AppRoutes.home,
@@ -45,7 +46,14 @@ class AppPages {
       binding: HomeBinding(),
     ),
 
-    /// auth
+    /// LEADERBOARD
+
+    GetPage(
+      name: AppRoutes.leaderboard,
+      page: () => LeaderboardPage(),
+    ),
+
+    /// AUTH
     GetPage(
       name: AppRoutes.verifyEmail,
       page: () => VerifyEmailPage(),
