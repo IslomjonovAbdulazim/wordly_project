@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 
 class StatusCodeService {
   static void showSnackbar(int statusCode) {
-    String title = "Error"; // Default title
-    String message = "Something went wrong."; // Default message
-    bool isError = true; // Default type
+    String title = "Error";
+    String message = "Something went wrong.";
+    bool isError = true;
 
     switch (statusCode) {
       case 200:
