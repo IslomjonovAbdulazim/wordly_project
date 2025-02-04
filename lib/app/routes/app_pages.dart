@@ -73,6 +73,7 @@ class AppPages {
       bindings: [
         SignUpBinding(),
         AuthImplBinding(),
+        VerifyEmailBinding(),
       ],
     ),
     GetPage(

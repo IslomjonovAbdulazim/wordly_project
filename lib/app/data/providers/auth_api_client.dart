@@ -8,7 +8,7 @@ import '../models/auth/forgot_password_request_model.dart';
 
 part 'auth_api_client.g.dart';
 
-@RestApi(baseUrl: "https://api.example.com")
+@RestApi(baseUrl: "http://10.10.4.65:8001")
 abstract class AuthApiClient {
   factory AuthApiClient(Dio dio, {String baseUrl}) = _AuthApiClient;
 
@@ -17,7 +17,7 @@ abstract class AuthApiClient {
   Future<AuthModel> signInWithEmail(@Body() Map<String, dynamic> body);
 
   // Sign up with email
-  @POST("/auth/signup")
+  @POST("/api/v1/auth/register/")
   Future<AuthModel> signUpWithEmail(@Body() Map<String, dynamic> body);
 
   // Forgot password: send OTP
@@ -26,8 +26,10 @@ abstract class AuthApiClient {
       @Body() Map<String, dynamic> body);
 
   // Confirm OTP
-  @POST("/auth/confirmOtp")
-  Future<ConfirmOtpRequestModel> confirmOtp(@Body() Map<String, dynamic> body);
+  @POST("/api/v1/auth/register/check")
+  Future<HttpResponse<dynamic>> confirmOtp(
+      @Body() Map<String, dynamic> body
+      );
 
   // Change password
   @POST("/auth/changePassword")

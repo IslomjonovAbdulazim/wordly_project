@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wordly_project/app/controllers/auth/verify_email_controller.dart';
 import 'package:wordly_project/app/data/models/auth/sign_up_request_model.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
 
@@ -10,18 +11,18 @@ import '../../../utils/services/social_auth_service.dart';
 class SignUpController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool eyeHidden = true.obs;
-  RxBool isAgree = false.obs;
+  RxBool isAgree = true.obs;
 
   TextEditingController fullnameController = TextEditingController(
     text: "Azim",
   );
   Rx<FocusNode> fullnameFocus = FocusNode().obs;
   TextEditingController emailController = TextEditingController(
-    text: "azim@gmail.com",
+    text: "islomjonov.abdulazim.27@gmail.com",
   );
   Rx<FocusNode> emailFocus = FocusNode().obs;
   TextEditingController passwordController = TextEditingController(
-    text: "Azim0270",
+    text: "Azim0270*",
   );
   Rx<FocusNode> passwordFocus = FocusNode().obs;
 
@@ -59,30 +60,33 @@ class SignUpController extends GetxController {
         "Invalid Email",
         "The email format is incorrect. Please enter a valid email address.",
       );
-    } else if (ValidationHelper.isValidPassword(password) == false) {
-      Get.closeAllSnackbars();
-      Get.snackbar(
-        "Password Too Weak",
-        "Use at least 8 characters with one uppercase letter and one number.",
-      );
-    } else {
+    }
+    // else if (ValidationHelper.isValidPassword(password) == false) {
+    //   Get.closeAllSnackbars();
+    //   Get.snackbar(
+    //     "Password Too Weak",
+    //     "Use at least 8 characters with one uppercase letter and one number.",
+    //   );
+    // }
+    else {
       isLoading.value = true;
       SignUpRequestModel model = SignUpRequestModel(
         email: email,
         password: password,
-        name: fullname,
+        fullname: fullname,
       );
       final impl = Get.find<AuthRepository>();
 
       final result = await impl.signUpWithEmail(model);
 
       isLoading.value = false;
+      Get.find<VerifyEmailController>().email.value = email;
 
       result.fold(
         (failure) {
           Get.closeAllSnackbars();
-          Get.snackbar("Error",
-              failure.message ?? "Something went wrong. Please try again.");
+          // Get.snackbar("Error",
+          //     failure.message ?? "Something went wrong. Please try again.");
           Get.toNamed(AppRoutes.verifyEmail);
         },
         (user) {

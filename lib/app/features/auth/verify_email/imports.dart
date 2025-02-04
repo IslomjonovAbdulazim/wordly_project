@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:wordly_project/app/controllers/auth/verify_email_controller.dart';
+import 'package:wordly_project/app/features/screens/loading/loading_page.dart';
 import 'package:wordly_project/utils/helpers/logger.dart';
 
 import '../../../../utils/constants/icon_constants.dart';

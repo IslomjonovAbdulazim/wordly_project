@@ -8,7 +8,7 @@ class SignUpRequestModel with _$SignUpRequestModel {
   const factory SignUpRequestModel({
     required String email,
     required String password,
-    String? name,
+    String? fullname,
   }) = _SignUpRequestModel;
 
   factory SignUpRequestModel.fromJson(Map<String, dynamic> json) => _$SignUpRequestModelFromJson(json);

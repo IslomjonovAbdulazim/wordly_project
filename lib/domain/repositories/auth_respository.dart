@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 import '../../app/data/models/auth/change_password_request_model.dart';
 import '../../app/data/models/auth/confirm_otp_request_model.dart';
@@ -22,9 +25,11 @@ abstract class AuthRepository {
     ForgotPasswordRequestModel request,
   );
 
-  Future<Either<NetworkFailure, dynamic>> confirmOtp(
+  Future<Either<NetworkFailure, HttpResponse>> confirmOtp(
     ConfirmOtpRequestModel request,
   );
+
+
 
   Future<Either<NetworkFailure, dynamic>> changePassword(
     ChangePasswordRequestModel request,

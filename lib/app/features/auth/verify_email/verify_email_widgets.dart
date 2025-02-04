@@ -23,7 +23,7 @@ class __Texts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<ConfirmOtpController>();
+    final controller = Get.find<VerifyEmailController>();
     return Column(
       children: [
         Text(
@@ -62,7 +62,7 @@ class __Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<ConfirmOtpController>();
+    final controller = Get.find<VerifyEmailController>();
     return ElevatedButton(
       style: context.elevatedButtonStyle,
       onPressed: controller.next,
@@ -83,7 +83,7 @@ class __OTPField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<ConfirmOtpController>();
+    final controller = Get.find<VerifyEmailController>();
     return PinCodeTextField(
       appContext: context,
       autoFocus: true,

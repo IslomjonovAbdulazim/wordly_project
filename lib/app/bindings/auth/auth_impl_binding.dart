@@ -9,7 +9,7 @@ class AuthImplBinding extends Bindings {
   @override
   void dependencies() {
     Dio dio = Dio(BaseOptions(
-      baseUrl: "https://api.example.com",
+      baseUrl: "http://10.10.4.65:8001",
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
     ));

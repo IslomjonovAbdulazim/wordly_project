@@ -1,11 +1,14 @@
 // lib/app/data/repositories/auth_repository_impl.dart
 
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../domain/entities/auth_user.dart';
 import '../../../domain/repositories/auth_respository.dart';
 import '../../../utils/errors/network_failure.dart';
+import '../../../utils/helpers/logger.dart';
 import '../models/auth/auth_model.dart';
 import '../models/auth/change_password_request_model.dart';
 import '../models/auth/confirm_otp_request_model.dart';
@@ -22,7 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
       : apiClient = AuthApiClient(
           dio ??
               Dio(BaseOptions(
-                baseUrl: "https://api.example.com",
+                baseUrl: "http://10.10.4.65:8001",
                 connectTimeout: Duration(seconds: 30),
                 receiveTimeout: Duration(seconds: 30),
               )),
@@ -47,8 +50,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<NetworkFailure, AuthUser>> signUpWithEmail(
       SignUpRequestModel request) async {
     try {
-      final AuthModel authModel =
-          await apiClient.signUpWithEmail(request.toJson());
+      final AuthModel authModel = await apiClient.signUpWithEmail(
+        request.toJson(),
+      );
       return Right(authModel.toEntity());
     } on DioException catch (e) {
       return Left(NetworkFailure(
@@ -73,11 +77,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<NetworkFailure, dynamic>> confirmOtp(
+  Future<Either<NetworkFailure, HttpResponse>> confirmOtp(
       ConfirmOtpRequestModel request) async {
+    Logger.log("-------------------------");
+    Logger.log(request.toJson()["email"]);
     try {
-      final response = await apiClient.confirmOtp(request.toJson());
-      return Right(response);
+      final response = (await apiClient.confirmOtp(request.toJson()));
+      return Right(response as HttpResponse);
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,

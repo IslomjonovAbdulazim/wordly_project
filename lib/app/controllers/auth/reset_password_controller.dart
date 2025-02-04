@@ -58,7 +58,7 @@ class ResetPasswordController extends GetxController {
     } else {
       ChangePasswordRequestModel model = ChangePasswordRequestModel(
         email: email,
-        newPassword: password,
+        password: password,
       );
       isLoading.value = true;
       final api = Get.find<AuthRepository>();

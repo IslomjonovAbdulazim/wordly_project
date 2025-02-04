@@ -32,7 +32,7 @@ class ConfirmOtpController extends GetxController {
       );
       isLoading.value = true;
       ConfirmOtpRequestModel model =
-          ConfirmOtpRequestModel(email: email.value, otp: otp);
+          ConfirmOtpRequestModel(email: email.value, code: int.parse(otp));
       final api = Get.find<AuthRepository>();
 
       final result = await api.confirmOtp(model);
@@ -48,7 +48,7 @@ class ConfirmOtpController extends GetxController {
         },
         (user) {
           Get.closeAllSnackbars();
-          Get.snackbar("Confirmed", "Welcome, ${user.name}!");
+          Get.snackbar("Confirmed", "Welcome, $user!");
           Get.toNamed(AppRoutes.resetPassword);
         },
       );

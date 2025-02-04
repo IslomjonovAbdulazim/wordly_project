@@ -10,7 +10,7 @@ part of 'auth_api_client.dart';
 
 class _AuthApiClient implements AuthApiClient {
   _AuthApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://api.example.com';
+    baseUrl ??= 'http://10.10.4.65:8001';
   }
 
   final Dio _dio;
@@ -58,7 +58,7 @@ class _AuthApiClient implements AuthApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/auth/signup',
+            '/api/v1/auth/register/',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -106,31 +106,26 @@ class _AuthApiClient implements AuthApiClient {
   }
 
   @override
-  Future<ConfirmOtpRequestModel> confirmOtp(Map<String, dynamic> body) async {
+  Future<HttpResponse<dynamic>> confirmOtp(Map<String, dynamic> body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _options = _setStreamType<ConfirmOtpRequestModel>(
+    final _options = _setStreamType<HttpResponse<dynamic>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/auth/confirmOtp',
+            '/api/v1/auth/register/check',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ConfirmOtpRequestModel _value;
-    try {
-      _value = ConfirmOtpRequestModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
   }
 
   @override

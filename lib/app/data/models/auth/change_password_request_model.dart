@@ -9,7 +9,7 @@ part 'change_password_request_model.g.dart';
 class ChangePasswordRequestModel with _$ChangePasswordRequestModel {
   const factory ChangePasswordRequestModel({
     required String email,
-    required String newPassword,
+    required String password,
   }) = _ChangePasswordRequestModel;
 
   factory ChangePasswordRequestModel.fromJson(Map<String, dynamic> json) => _$ChangePasswordRequestModelFromJson(json);
