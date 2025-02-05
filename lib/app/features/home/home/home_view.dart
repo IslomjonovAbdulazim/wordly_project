@@ -10,7 +10,7 @@ class _Title extends StatelessWidget {
       barrierColor: Colors.black.withValues(alpha: .5),
       dropdownStyleData: DropdownStyleData(
         decoration: BoxDecoration(
-          color: Color(0xffF1F1FA),
+          color: context.cardColor,
           borderRadius: BorderRadius.circular(20),
         ),
       ),
@@ -19,7 +19,7 @@ class _Title extends StatelessWidget {
       value: controller.currentBook?.value,
       onChanged: controller.selectBook,
       style: GoogleFonts.nunito(
-        color: Color(0xff2a2b2d),
+        color: context.textPrimary,
         fontSize: 18,
       ),
       hint: Text(
@@ -29,29 +29,22 @@ class _Title extends StatelessWidget {
       buttonStyleData: ButtonStyleData(
         padding: EdgeInsets.only(right: 5),
         decoration: BoxDecoration(
-          // border: Border.all(
-          //   color: _Colors.card,
-          // ),
           borderRadius: BorderRadius.circular(15),
         ),
       ),
       iconStyleData: IconStyleData(
         icon: Icon(
           Icons.arrow_downward,
-          // color: _Colors.darkBlue,
+          color: context.textPrimary,
         ),
       ),
       items: essentialBooks.map<DropdownMenuItem<BookEntity>>(
-            (book) {
+        (book) {
           return DropdownMenuItem(
             value: book,
             child: Text(
               "Book ${book.number}",
-              style: GoogleFonts.nunito(
-                color: Color(0xff2a2b2d),
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              style: context.body,
             ),
           );
         },
@@ -115,4 +108,3 @@ class _ThemeItem extends StatelessWidget {
     );
   }
 }
-
