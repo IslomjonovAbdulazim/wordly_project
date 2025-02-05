@@ -23,10 +23,8 @@ class _Title extends StatelessWidget {
         fontSize: 18,
       ),
       hint: Text(
-        "Category",
-        style: GoogleFonts.inter(
-          color: Color(0xff91919F),
-        ),
+        "Book",
+        style: context.title,
       ),
       buttonStyleData: ButtonStyleData(
         padding: EdgeInsets.only(right: 5),
