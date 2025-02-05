@@ -65,7 +65,7 @@ class SignInController extends GetxController {
         (response) {
           TokenService.to.saveToken(response.access);
           TokenService.to.saveRefreshToken(response.refresh);
-          Get.snackbar("OK", "${response.access}\n${response.refresh}");
+          Get.offAllNamed(AppRoutes.main);
         },
       );
     }
