@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:wordly_project/app/data/models/auth/auth_response_model.dart';
 
 import '../../../domain/entities/auth_user.dart';
 import '../../../domain/repositories/auth_respository.dart';
@@ -33,12 +34,12 @@ class AuthRepositoryImpl implements AuthRepository {
         );
 
   @override
-  Future<Either<NetworkFailure, AuthUser>> signInWithEmail(
+  Future<Either<NetworkFailure, AuthResponseModel>> signInWithEmail(
       SignInRequestModel request) async {
     try {
-      final AuthModel authModel =
+      final AuthResponseModel authModel =
           await apiClient.signInWithEmail(request.toJson());
-      return Right(authModel.toEntity());
+      return Right(authModel);
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,
@@ -48,7 +49,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<NetworkFailure, dynamic>> signUpWithEmail(
+  Future<Either<NetworkFailure, AuthResponseModel>> signUpWithEmail(
       SignUpRequestModel request) async {
     try {
       final res = await apiClient.signUpWithEmail(request.toJson());
@@ -62,7 +63,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<NetworkFailure, dynamic>> forgotPassword(
+  Future<Either<NetworkFailure, AuthResponseModel>> forgotPassword(
       ForgotPasswordRequestModel request) async {
     try {
       final response = await apiClient.forgotPassword(request.toJson());
@@ -76,13 +77,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<NetworkFailure, HttpResponse>> confirmOtp(
+  Future<Either<NetworkFailure, AuthResponseModel>> confirmOtp(
       ConfirmOtpRequestModel request) async {
     Logger.log("-------------------------");
     Logger.log(request.toJson()["email"]);
     try {
       final response = (await apiClient.confirmOtp(request.toJson()));
-      return Right(response as HttpResponse);
+      return Right(response);
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,
@@ -92,7 +93,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<NetworkFailure, dynamic>> changePassword(
+  Future<Either<NetworkFailure, AuthResponseModel>> changePassword(
       ChangePasswordRequestModel request) async {
     try {
       final response = await apiClient.changePassword(request.toJson());
@@ -106,11 +107,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<NetworkFailure, AuthUser>> socialAuth(
+  Future<Either<NetworkFailure, AuthResponseModel>> socialAuth(
       SocialAuthRequestModel request) async {
     try {
-      final AuthModel authModel = await apiClient.socialAuth(request.toJson());
-      return Right(authModel.toEntity());
+      final authModel = await apiClient.socialAuth(request.toJson());
+      return Right(authModel);
     } on DioException catch (e) {
       return Left(NetworkFailure(
         message: e.message,

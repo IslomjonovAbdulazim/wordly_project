@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
 import '../../../utils/helpers/logger.dart';
+import '../../../utils/helpers/status_code_helper.dart';
 import '../../data/models/auth/confirm_otp_request_model.dart';
 import '../../routes/app_routes.dart';
 
@@ -46,11 +47,11 @@ class VerifyEmailController extends GetxController {
       result.fold(
         (failure) {
           Get.closeAllSnackbars();
-          Get.snackbar("Error",
-              failure.message ?? "Something went wrong. Please try again.");
+          Get.closeAllSnackbars();
+          StatusCodeService.showSnackbar(failure.statusCode ?? 404);
         },
         (response) {
-          if (response.statusCode == 200) {
+          if (response.status == 200) {
             Get.toNamed(AppRoutes.signIn);
           } else {
             Get.closeAllSnackbars();

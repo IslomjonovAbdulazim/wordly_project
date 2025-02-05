@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:wordly_project/app/data/models/auth/auth_response_model.dart';
 import 'package:wordly_project/app/data/models/auth/sign_up_request_model.dart';
 import 'package:wordly_project/domain/entities/auth/sign_up_request_entity.dart';
 
@@ -13,27 +14,27 @@ import '../../utils/errors/network_failure.dart';
 import '../entities/auth_user.dart';
 
 abstract class AuthRepository {
-  Future<Either<NetworkFailure, AuthUser>> signInWithEmail(
+  Future<Either<NetworkFailure, AuthResponseModel>> signInWithEmail(
     SignInRequestModel request,
   );
 
-  Future<Either<NetworkFailure, dynamic>> signUpWithEmail(
+  Future<Either<NetworkFailure, AuthResponseModel>> signUpWithEmail(
     SignUpRequestModel request,
   );
 
-  Future<Either<NetworkFailure, dynamic>> forgotPassword(
+  Future<Either<NetworkFailure, AuthResponseModel>> forgotPassword(
     ForgotPasswordRequestModel request,
   );
 
-  Future<Either<NetworkFailure, HttpResponse>> confirmOtp(
+  Future<Either<NetworkFailure, AuthResponseModel>> confirmOtp(
     ConfirmOtpRequestModel request,
   );
 
-  Future<Either<NetworkFailure, dynamic>> changePassword(
+  Future<Either<NetworkFailure, AuthResponseModel>> changePassword(
     ChangePasswordRequestModel request,
   );
 
-  Future<Either<NetworkFailure, AuthUser>> socialAuth(
+  Future<Either<NetworkFailure, AuthResponseModel>> socialAuth(
     SocialAuthRequestModel request,
   );
 }

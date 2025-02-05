@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:wordly_project/app/data/models/auth/auth_response_model.dart';
 
 import '../../../utils/constants/api_constants.dart';
 import '../models/auth/auth_model.dart';
@@ -13,22 +14,22 @@ abstract class AuthApiClient {
   factory AuthApiClient(Dio dio, {String baseUrl}) = _AuthApiClient;
 
   @POST(ApiConstants.token)
-  Future<AuthModel> signInWithEmail(@Body() Map<String, dynamic> body);
+  Future<AuthResponseModel> signInWithEmail(@Body() Map<String, dynamic> body);
 
   @POST(ApiConstants.register)
-  Future<dynamic> signUpWithEmail(@Body() Map<String, dynamic> body);
+  Future<AuthResponseModel> signUpWithEmail(@Body() Map<String, dynamic> body);
 
   @POST(ApiConstants.verifyOTP)
-  Future<ForgotPasswordRequestModel> forgotPassword(
+  Future<AuthResponseModel> forgotPassword(
       @Body() Map<String, dynamic> body);
 
   @POST(ApiConstants.registerCheck)
-  Future<HttpResponse<dynamic>> confirmOtp(@Body() Map<String, dynamic> body);
+  Future<AuthResponseModel> confirmOtp(@Body() Map<String, dynamic> body);
 
   @POST(ApiConstants.resetPassword)
-  Future<ChangePasswordRequestModel> changePassword(
+  Future<AuthResponseModel> changePassword(
       @Body() Map<String, dynamic> body);
 
   @POST("/auth/socialAuth")
-  Future<AuthModel> socialAuth(@Body() Map<String, dynamic> body);
+  Future<AuthResponseModel> socialAuth(@Body() Map<String, dynamic> body);
 }

@@ -87,11 +87,11 @@ class SignUpController extends GetxController {
           StatusCodeService.showSnackbar(failure.statusCode ?? 500);
         },
         (code) {
-          if (code <= 250) {
+          if (code.status <= 210) {
             Get.toNamed(AppRoutes.verifyEmail);
           } else {
             Get.closeAllSnackbars();
-            StatusCodeService.showSnackbar(code);
+            StatusCodeService.showSnackbar(code.status);
           }
         },
       );

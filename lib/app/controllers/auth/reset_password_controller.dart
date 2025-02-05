@@ -73,7 +73,7 @@ class ResetPasswordController extends GetxController {
         },
         (user) {
           Get.closeAllSnackbars();
-          Get.snackbar("Success", "Welcome, ${user.name}!");
+          Get.snackbar("Success", "Welcome, ${user}!");
           Get.offAllNamed('/home');
         },
       );
