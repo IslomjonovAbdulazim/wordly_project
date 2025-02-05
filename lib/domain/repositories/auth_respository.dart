@@ -34,4 +34,8 @@ abstract class AuthRepository {
   Future<Either<NetworkFailure, AuthResponseModel>> socialAuth(
     SocialAuthRequestModel request,
   );
+
+  Future<Either<NetworkFailure, AuthResponseModel>> verifyOtp(
+    ConfirmOtpRequestModel request,
+  );
 }

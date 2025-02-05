@@ -8,11 +8,14 @@ class HomeController extends GetxController {
   Rx<BookEntity>? currentBook;
   List<BookEntity> books = [];
 
+  HomeController() {
+    Logger.log("sent-------------------------------");
+    init();
+  }
+
   @override
   void onInit() {
     super.onInit();
-    Logger.log("sent");
-    init();
   }
 
   Future<void> init() async {

@@ -10,7 +10,7 @@ import '../../../domain/repositories/auth_respository.dart';
 class ForgotPasswordController extends GetxController {
   RxBool isLoading = false.obs;
   TextEditingController emailController = TextEditingController(
-    text: "azim@gmail.com",
+    text: "islomjonov.abdulazim.27@gmail.com",
   );
   Rx<FocusNode> emailFocus = FocusNode().obs;
 

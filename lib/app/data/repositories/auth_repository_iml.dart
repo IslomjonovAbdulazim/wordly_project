@@ -115,4 +115,19 @@ class AuthRepositoryImpl implements AuthRepository {
       ));
     }
   }
+
+  @override
+  Future<Either<NetworkFailure, AuthResponseModel>> verifyOtp(
+    ConfirmOtpRequestModel request,
+  ) async {
+    try {
+      final authModel = await apiClient.verifyOtp(request.toJson());
+      return Right(authModel);
+    } on DioException catch (e) {
+      return Left(NetworkFailure(
+        message: e.message,
+        statusCode: e.response?.statusCode,
+      ));
+    }
+  }
 }

@@ -8,6 +8,7 @@ import '../../../../utils/extenstions/button_extenstion.dart';
 import '../../../../utils/extenstions/color_extension.dart';
 import '../../../../utils/extenstions/text_style_extention.dart';
 import '../../../controllers/auth/confirm_otp_controller.dart';
+import '../../screens/loading/loading_page.dart';
 
 part 'confirm_otp_page.dart';
 part 'confirm_otp_view.dart';

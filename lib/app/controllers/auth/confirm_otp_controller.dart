@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:wordly_project/app/data/models/auth/confirm_otp_request_model.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
-import 'package:wordly_project/utils/helpers/logger.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
+import '../../../utils/helpers/status_code_helper.dart';
 
 class ConfirmOtpController extends GetxController {
   RxBool isLoading = false.obs;
@@ -33,21 +33,20 @@ class ConfirmOtpController extends GetxController {
           ConfirmOtpRequestModel(email: email.value, code: int.parse(otp));
       final api = Get.find<AuthRepository>();
 
-      final result = await api.confirmOtp(model);
+      final result = await api.verifyOtp(model);
 
       isLoading.value = false;
 
       result.fold(
         (failure) {
-          Get.closeAllSnackbars();
-          Get.snackbar("Error",
-              failure.message ?? "Something went wrong. Please try again.");
-          Get.toNamed(AppRoutes.resetPassword);
+          StatusCodeService.showSnackbar(failure.statusCode ?? 505);
         },
-        (user) {
-          Get.closeAllSnackbars();
-          Get.snackbar("Confirmed", "Welcome, $user!");
-          Get.toNamed(AppRoutes.resetPassword);
+        (response) {
+          if (response.status < 210) {
+            Get.toNamed(AppRoutes.resetPassword);
+          } else {
+            StatusCodeService.showSnackbar(response.status ?? 505);
+          }
         },
       );
     }
