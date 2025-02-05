@@ -23,7 +23,6 @@ void main() async {
   TokenService.to.clearToken();
   runApp(const MyApp());
 
-
 }
 
 class MyApp extends StatelessWidget {
