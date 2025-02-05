@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:wordly_project/app/data/models/auth/auth_response_model.dart';
+import 'package:wordly_project/app/data/models/auth/sign_in_request_model.dart';
+import 'package:wordly_project/app/data/models/auth/sign_in_response_model.dart';
 
 import '../../../utils/constants/api_constants.dart';
 import '../models/auth/auth_model.dart';
@@ -14,7 +16,7 @@ abstract class AuthApiClient {
   factory AuthApiClient(Dio dio, {String baseUrl}) = _AuthApiClient;
 
   @POST(ApiConstants.token)
-  Future<AuthResponseModel> signInWithEmail(@Body() Map<String, dynamic> body);
+  Future<SignInResponseModel> signInWithEmail(@Body() Map<String, dynamic> body);
 
   @POST(ApiConstants.register)
   Future<AuthResponseModel> signUpWithEmail(@Body() Map<String, dynamic> body);

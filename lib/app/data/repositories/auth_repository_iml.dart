@@ -1,17 +1,14 @@
 // lib/app/data/repositories/auth_repository_impl.dart
 
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wordly_project/app/data/models/auth/auth_response_model.dart';
+import 'package:wordly_project/app/data/models/auth/sign_in_response_model.dart';
 
-import '../../../domain/entities/auth_user.dart';
 import '../../../domain/repositories/auth_respository.dart';
 import '../../../utils/constants/api_constants.dart';
 import '../../../utils/errors/network_failure.dart';
 import '../../../utils/helpers/logger.dart';
-import '../models/auth/auth_model.dart';
 import '../models/auth/change_password_request_model.dart';
 import '../models/auth/confirm_otp_request_model.dart';
 import '../models/auth/forgot_password_request_model.dart';
@@ -34,11 +31,10 @@ class AuthRepositoryImpl implements AuthRepository {
         );
 
   @override
-  Future<Either<NetworkFailure, AuthResponseModel>> signInWithEmail(
+  Future<Either<NetworkFailure, SignInResponseModel>> signInWithEmail(
       SignInRequestModel request) async {
     try {
-      final AuthResponseModel authModel =
-          await apiClient.signInWithEmail(request.toJson());
+      final authModel = await apiClient.signInWithEmail(request.toJson());
       return Right(authModel);
     } on DioException catch (e) {
       return Left(NetworkFailure(
