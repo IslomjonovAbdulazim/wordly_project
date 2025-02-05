@@ -22,6 +22,8 @@ void main() async {
   await Get.putAsync(() => TokenService().init());
   TokenService.to.clearToken();
   runApp(const MyApp());
+
+
 }
 
 class MyApp extends StatelessWidget {
