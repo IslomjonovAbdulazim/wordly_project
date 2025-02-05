@@ -90,7 +90,7 @@ class _ThemeItem extends StatelessWidget {
         horizontal: 10,
       ),
       child: CupertinoButton(
-        // color: _Colors.card,
+        color: context.cardColor,
         padding: EdgeInsets.zero,
         onPressed: () {},
         child: Padding(
@@ -102,18 +102,12 @@ class _ThemeItem extends StatelessWidget {
             children: [
               Text(
                 unit.number.toString().padLeft(2, "0"),
-                style: GoogleFonts.ibmPlexMono(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: context.subtitle,
               ),
               SizedBox(width: 10),
               Text(
                 unit.name,
-                style: GoogleFonts.workSans(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: context.subtitle,
                 maxLines: 1,
               )
             ],

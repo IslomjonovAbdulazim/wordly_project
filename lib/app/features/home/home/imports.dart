@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wordly_project/app/controllers/home/home_controller.dart';
 import 'package:wordly_project/domain/entities/home/unit_entity.dart';
+import 'package:wordly_project/utils/extenstions/color_extension.dart';
+import 'package:wordly_project/utils/extenstions/text_style_extention.dart';
 
 import '../../../../domain/entities/home/book_entity.dart';
 
