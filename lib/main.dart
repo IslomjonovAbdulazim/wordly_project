@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:wordly_project/utils/services/connectivity_service.dart';
-import 'package:wordly_project/utils/services/token_service.dart';
-import 'package:wordly_project/utils/themes/app_theme.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
+import 'utils/services/connectivity_service.dart';
 import 'utils/services/theme_service.dart';
+import 'utils/services/token_service.dart';
+import 'utils/themes/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
