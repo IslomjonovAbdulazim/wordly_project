@@ -51,8 +51,8 @@ class VerifyEmailController extends GetxController {
           StatusCodeService.showSnackbar(failure.statusCode ?? 404);
         },
         (response) {
-          if (response.status == 200) {
-            Get.toNamed(AppRoutes.signIn);
+          if (response.status <= 210) {
+            Get.offAllNamed(AppRoutes.signIn);
           } else {
             Get.closeAllSnackbars();
             Get.snackbar("Incorrect Code", "------------------");

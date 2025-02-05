@@ -30,7 +30,7 @@ class VerifyEmailPage extends StatelessWidget {
               ),
             ),
           ),
-          LoadingPage(controller.isLoading.value),
+          Obx(() => LoadingPage(controller.isLoading.value)),
         ],
       ),
     );
