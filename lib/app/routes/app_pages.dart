@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:wordly_project/app/bindings/auth/reset_password_binding.dart';
 import 'package:wordly_project/app/bindings/home/home_binding.dart';
 import 'package:wordly_project/app/bindings/home/home_impl_binding.dart';
 import 'package:wordly_project/app/bindings/leaderboard/leaderboard_binding.dart';
 import 'package:wordly_project/app/bindings/profile/profile_binding.dart';
 import 'package:wordly_project/app/bindings/screens/main_binding.dart';
+import 'package:wordly_project/app/features/auth/reset_password/imports.dart';
 import 'package:wordly_project/app/features/screens/main/imports.dart';
 import 'package:wordly_project/domain/repositories/home_repository.dart';
 
@@ -98,6 +100,14 @@ class AppPages {
       page: () => ConfirmOTPPage(),
       bindings: [
         ConfirmOtpBinding(),
+        AuthImplBinding(),
+      ],
+    ),
+    GetPage(
+      name: AppRoutes.resetPassword,
+      page: () => ResetPasswordPage(),
+      bindings: [
+        ResetPasswordBinding(),
         AuthImplBinding(),
       ],
     ),

@@ -10,7 +10,7 @@ part of 'auth_api_client.dart';
 
 class _AuthApiClient implements AuthApiClient {
   _AuthApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'http://10.10.5.125:8001/';
+    baseUrl ??= 'http://10.10.1.129:8000/';
   }
 
   final Dio _dio;

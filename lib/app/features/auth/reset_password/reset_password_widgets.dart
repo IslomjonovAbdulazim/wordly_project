@@ -112,7 +112,9 @@ class __Confirmation extends StatelessWidget {
             padding: EdgeInsets.zero,
             onPressed: controller.toggleEyePasswordConfirm,
             child: Icon(
-              controller.hideEyeConfirmPassword.value ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye_fill,
+              controller.hideEyeConfirmPassword.value
+                  ? CupertinoIcons.eye_slash_fill
+                  : CupertinoIcons.eye_fill,
               size: 26,
             ),
           ),
@@ -144,7 +146,7 @@ class __Button extends StatelessWidget {
     return ElevatedButton(
       style: context.elevatedButtonStyle,
       onPressed: () {
-        // context.go(AppRoutePaths.confirmOTP);
+        Get.find<ResetPasswordController>().save();
       },
       child: Center(
         child: Text(

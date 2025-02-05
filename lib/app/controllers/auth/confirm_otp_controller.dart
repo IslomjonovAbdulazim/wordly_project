@@ -28,6 +28,7 @@ class ConfirmOtpController extends GetxController {
         "Invalid Input",
         "The provided input is incorrect. Please check and try again.",
       );
+    } else {
       isLoading.value = true;
       ConfirmOtpRequestModel model =
           ConfirmOtpRequestModel(email: email.value, code: int.parse(otp));

@@ -5,6 +5,7 @@ class ConfirmOTPPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ConfirmOtpController>();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
@@ -31,7 +32,7 @@ class ConfirmOTPPage extends StatelessWidget {
             ),
           ),
           Obx(() =>
-              LoadingPage(Get.find<ConfirmOtpController>().isLoading.value)),
+              LoadingPage(controller.isLoading.value)),
         ],
       ),
     );
