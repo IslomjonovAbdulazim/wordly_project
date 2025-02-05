@@ -19,5 +19,8 @@ abstract class HomeApiClient {
   );
 
   @GET(ApiConstants.units)
-  Future<List<UnitResponseModel>> getUnits(@Path("book_id") int bookID);
+  Future<List<UnitResponseModel>> getUnits(
+    @Header("Authorization") String token,
+    @Path("book_id") int bookID,
+  );
 }

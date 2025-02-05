@@ -28,6 +28,7 @@ class HomeRepositoryImpl extends HomeRepository {
   @override
   Future<Either<NetworkFailure, List<BookEntity>>> books() async {
     try {
+      Logger.log("Bearer ${TokenService.to.token}");
       final books = await apiClient.getBooks("Bearer ${TokenService.to.token}");
       return Right(books.map((book) => book.toEntity()).toList());
     } on DioException catch (e) {
@@ -43,7 +44,7 @@ class HomeRepositoryImpl extends HomeRepository {
   @override
   Future<Either<NetworkFailure, List<UnitEntity>>> units(int bookID) async {
     try {
-      final units = await apiClient.getUnits(bookID);
+      final units = await apiClient.getUnits("Bearer ${TokenService.to.token}", bookID);
       return Right(units.map((unit) => unit.toEntity()).toList());
     } on DioException catch (e) {
       return Left(

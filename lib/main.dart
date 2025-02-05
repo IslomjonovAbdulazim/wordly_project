@@ -20,7 +20,7 @@ void main() async {
   Get.put(ThemeController());
   await Get.putAsync(() => ConnectivityService().init());
   await Get.putAsync(() => TokenService().init());
-  // TokenService.to.clearToken();
+  TokenService.to.clearToken();
   runApp(const MyApp());
 }
 

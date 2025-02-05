@@ -6,49 +6,55 @@ class _Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
-    return DropdownButton2<BookEntity>(
-      barrierColor: Colors.black.withValues(alpha: .5),
-      dropdownStyleData: DropdownStyleData(
-        decoration: BoxDecoration(
-          color: context.cardColor,
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      underline: SizedBox.shrink(),
-      isExpanded: true,
-      value: controller.currentBook?.value,
-      onChanged: controller.selectBook,
-      style: GoogleFonts.nunito(
-        color: context.textPrimary,
-        fontSize: 18,
-      ),
-      hint: Text(
-        "Book",
-        style: context.title,
-      ),
-      buttonStyleData: ButtonStyleData(
-        padding: EdgeInsets.only(right: 5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-      iconStyleData: IconStyleData(
-        icon: Icon(
-          Icons.arrow_downward,
-          color: context.textPrimary,
-        ),
-      ),
-      items: essentialBooks.map<DropdownMenuItem<BookEntity>>(
-        (book) {
-          return DropdownMenuItem(
-            value: book,
-            child: Text(
-              "Book ${book.number}",
-              style: context.body,
+    return Obx(
+      () => controller.isLoading.value
+          ? CircularProgressIndicator.adaptive()
+          : DropdownButton2<BookEntity>(
+              barrierColor: Colors.black.withValues(alpha: .5),
+              dropdownStyleData: DropdownStyleData(
+                decoration: BoxDecoration(
+                  color: context.cardColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              underline: SizedBox.shrink(),
+              isExpanded: true,
+              value: controller.currentBook?.value,
+              onChanged: (val) {
+                controller.selectBook(val);
+              },
+              style: GoogleFonts.nunito(
+                color: context.textPrimary,
+                fontSize: 18,
+              ),
+              hint: Text(
+                "Book",
+                style: context.title,
+              ),
+              buttonStyleData: ButtonStyleData(
+                padding: EdgeInsets.only(right: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+              iconStyleData: IconStyleData(
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: context.textPrimary,
+                ),
+              ),
+              items: controller.books.value.map<DropdownMenuItem<BookEntity>>(
+                (book) {
+                  return DropdownMenuItem(
+                    value: book,
+                    child: Text(
+                      "Book ${book.number}",
+                      style: context.body,
+                    ),
+                  );
+                },
+              ).toList(),
             ),
-          );
-        },
-      ).toList(),
     );
   }
 }
@@ -58,12 +64,19 @@ class _Themes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: units.length,
-      itemBuilder: (_, int index) {
-        final unit = units[index];
-        return _ThemeItem(unit: unit);
-      },
+    final controller = Get.find<HomeController>();
+    return Obx(
+      () => controller.isLoading.value
+          ? Center(
+              child: CircularProgressIndicator.adaptive(),
+            )
+          : ListView.builder(
+              itemCount: controller.units.value.length,
+              itemBuilder: (_, int index) {
+                final unit = controller.units.value[index];
+                return _ThemeItem(unit: unit);
+              },
+            ),
     );
   }
 }

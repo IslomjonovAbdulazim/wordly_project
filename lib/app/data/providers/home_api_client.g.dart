@@ -53,10 +53,11 @@ class _HomeApiClient implements HomeApiClient {
   }
 
   @override
-  Future<List<UnitResponseModel>> getUnits(int bookID) async {
+  Future<List<UnitResponseModel>> getUnits(String token, int bookID) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<UnitResponseModel>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
