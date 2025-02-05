@@ -58,12 +58,7 @@ class SignInController extends GetxController {
           StatusCodeService.showSnackbar(failure.statusCode ?? 505);
         },
         (response) {
-          if (response.status <= 210) {
-            Get.closeAllSnackbars();
-            Get.toNamed(AppRoutes.home);
-          } else {
-            StatusCodeService.showSnackbar(response.status);
-          }
+          Get.snackbar("OK", "${response.access}\n${response.refresh}");
         },
       );
     }

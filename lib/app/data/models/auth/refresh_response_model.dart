@@ -6,7 +6,7 @@ part 'refresh_response_model.g.dart';
 @freezed
 class RefreshResponseModel with _$RefreshResponseModel {
   const factory RefreshResponseModel({
-    required String refresh,
+    required String access,
   }) = _RefreshResponseModel;
 
   factory RefreshResponseModel.fromJson(Map<String, dynamic> json) =>
