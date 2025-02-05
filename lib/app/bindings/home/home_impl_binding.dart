@@ -15,7 +15,7 @@ class HomeImplBinding extends Bindings {
       receiveTimeout: const Duration(seconds: 30),
     ));
 
-    Get.lazyPut<HomeApiClient>(() => HomeApiClient(dio));
-    Get.lazyPut<HomeRepository>(() => HomeRepositoryImpl(dio: dio));
+    Get.put<HomeApiClient>(HomeApiClient(dio));
+    Get.put<HomeRepository>(HomeRepositoryImpl(dio: dio));
   }
 }

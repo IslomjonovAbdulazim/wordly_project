@@ -20,10 +20,11 @@ class _HomeApiClient implements HomeApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<BookResponseModel>> getBooks() async {
+  Future<List<BookResponseModel>> getBooks(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<BookResponseModel>>(
       Options(method: 'GET', headers: _headers, extra: _extra)

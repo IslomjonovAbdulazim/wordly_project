@@ -7,6 +7,7 @@ import 'package:wordly_project/domain/entities/home/book_entity.dart';
 import 'package:wordly_project/domain/entities/home/unit_entity.dart';
 import 'package:wordly_project/domain/repositories/home_repository.dart';
 import 'package:wordly_project/utils/errors/network_failure.dart';
+import 'package:wordly_project/utils/services/token_service.dart';
 
 import '../../../utils/constants/api_constants.dart';
 
@@ -26,7 +27,7 @@ class HomeRepositoryImpl extends HomeRepository {
   @override
   Future<Either<NetworkFailure, List<BookEntity>>> books() async {
     try {
-      final books = await apiClient.getBooks();
+      final books = await apiClient.getBooks(TokenService.to.token);
       return Right(books.map((book) => book.toEntity()).toList());
     } on DioException catch (e) {
       return Left(

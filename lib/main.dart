@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:wordly_project/app/data/repositories/home_repository_impl.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
+import 'domain/repositories/home_repository.dart';
 import 'utils/services/connectivity_service.dart';
 import 'utils/services/theme_service.dart';
 import 'utils/services/token_service.dart';
@@ -20,6 +22,7 @@ void main() async {
   Get.put(ThemeController());
   await Get.putAsync(() => ConnectivityService().init());
   await Get.putAsync(() => TokenService().init());
+  // TokenService.to.clearToken();
   runApp(const MyApp());
 }
 

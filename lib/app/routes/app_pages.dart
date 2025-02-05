@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import 'package:wordly_project/app/bindings/home/home_binding.dart';
+import 'package:wordly_project/app/bindings/home/home_impl_binding.dart';
 import 'package:wordly_project/app/bindings/leaderboard/leaderboard_binding.dart';
 import 'package:wordly_project/app/bindings/profile/profile_binding.dart';
 import 'package:wordly_project/app/bindings/screens/main_binding.dart';
 import 'package:wordly_project/app/features/screens/main/imports.dart';
+import 'package:wordly_project/domain/repositories/home_repository.dart';
 
 import '../bindings/auth/auth_impl_binding.dart';
 import '../bindings/auth/confirm_otp_binding.dart';
@@ -37,8 +39,9 @@ class AppPages {
       name: AppRoutes.main,
       page: () => MainNavPage(),
       bindings: [
-        MainNavBinding(),
+        HomeImplBinding(),
         HomeBinding(),
+        MainNavBinding(),
         LeaderboardBinding(),
         ProfileBinding(),
       ],

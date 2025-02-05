@@ -26,6 +26,7 @@ class TokenService extends GetxService {
   Future<void> clearToken() async {
     _token.value = '';
     await _storage.remove('token');
+    await _storage.remove('refresh-token');
   }
 
   /// Check if token is available and non-empty.

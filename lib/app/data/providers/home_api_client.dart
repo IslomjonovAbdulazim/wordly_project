@@ -13,7 +13,9 @@ abstract class HomeApiClient {
   factory HomeApiClient(Dio dio, {String baseUrl}) = _HomeApiClient;
 
   @GET(ApiConstants.books)
-  Future<List<BookResponseModel>> getBooks();
+  Future<List<BookResponseModel>> getBooks(
+    @Header("Authorization") String token,
+  );
 
   @GET(ApiConstants.units)
   Future<List<UnitResponseModel>> getUnits(@Path("book_id") int bookID);
