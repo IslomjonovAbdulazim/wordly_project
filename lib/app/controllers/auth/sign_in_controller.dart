@@ -4,6 +4,7 @@ import 'package:wordly_project/app/data/models/auth/sign_in_request_model.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
 import 'package:wordly_project/domain/repositories/auth_respository.dart';
 import 'package:wordly_project/utils/helpers/validation_helper.dart';
+import 'package:wordly_project/utils/services/token_service.dart';
 
 import '../../../utils/helpers/status_code_helper.dart';
 import '../../../utils/services/social_auth_service.dart';
@@ -13,9 +14,13 @@ class SignInController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool eyeHidden = true.obs;
 
-  TextEditingController emailController = TextEditingController();
+  TextEditingController emailController = TextEditingController(
+    text: "islomjonov.abdulazim.27@gmail.com",
+  );
   Rx<FocusNode> emailFocus = FocusNode().obs;
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController(
+    text: "Azim0270*",
+  );
   Rx<FocusNode> passwordFocus = FocusNode().obs;
 
   void unFocus() {
@@ -58,6 +63,8 @@ class SignInController extends GetxController {
           StatusCodeService.showSnackbar(failure.statusCode ?? 505);
         },
         (response) {
+          TokenService.to.saveToken(response.access);
+          TokenService.to.saveRefreshToken(response.refresh);
           Get.snackbar("OK", "${response.access}\n${response.refresh}");
         },
       );
