@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wordly_project/app/controllers/auth/forgot_password_controller.dart';
 import 'package:wordly_project/app/data/models/auth/change_password_request_model.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
 import 'package:wordly_project/utils/helpers/logger.dart';
@@ -13,6 +14,10 @@ class ResetPasswordController extends GetxController {
   RxBool hideEyePassword = true.obs;
   RxBool hideEyeConfirmPassword = true.obs;
   String email = "";
+
+  void setEmail(String val) {
+    email = val;
+  }
 
   TextEditingController passwordController = TextEditingController(
     text: "ChangesPass*1",
@@ -61,9 +66,9 @@ class ResetPasswordController extends GetxController {
         "Password must be at least 8 characters long and include at least one uppercase letter and one number.",
       );
     } else {
-      Logger.log(email);
+      Logger.log("email333333: $EMAIL");
       ChangePasswordRequestModel model = ChangePasswordRequestModel(
-        email: email,
+        email: EMAIL,
         password: password,
       );
       isLoading.value = true;

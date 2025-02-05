@@ -62,6 +62,7 @@ class AppPages {
       bindings: [
         VerifyEmailBinding(),
         AuthImplBinding(),
+        ResetPasswordBinding(),
       ],
     ),
     GetPage(
@@ -101,6 +102,7 @@ class AppPages {
       bindings: [
         ConfirmOtpBinding(),
         AuthImplBinding(),
+        ResetPasswordBinding(),
       ],
     ),
     GetPage(

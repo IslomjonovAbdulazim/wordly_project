@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:wordly_project/app/controllers/auth/confirm_otp_controller.dart';
 import 'package:wordly_project/app/data/models/auth/forgot_password_request_model.dart';
 import 'package:wordly_project/app/routes/app_routes.dart';
+import 'package:wordly_project/utils/helpers/logger.dart';
 import 'package:wordly_project/utils/helpers/validation_helper.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
 
+String EMAIL = "";
 class ForgotPasswordController extends GetxController {
   RxBool isLoading = false.obs;
   TextEditingController emailController = TextEditingController(
@@ -31,10 +33,12 @@ class ForgotPasswordController extends GetxController {
       isLoading.value = true;
 
       ForgotPasswordRequestModel request =
-          ForgotPasswordRequestModel(email: email);
+          ForgotPasswordRequestModel(email: email, );
       final api = Get.find<AuthRepository>();
-      final result = await api.forgotPassword(request);
 
+      final result = await api.forgotPassword(request);
+      Logger.log("email222222: $email");
+      EMAIL = email;
       isLoading.value = false;
       Get.find<ConfirmOtpController>().setEmail(email);
 
@@ -43,7 +47,6 @@ class ForgotPasswordController extends GetxController {
           Get.closeAllSnackbars();
           Get.snackbar("Error",
               failure.message ?? "Something went wrong. Please try again.");
-          Get.toNamed(AppRoutes.confirmOTP); // todo
         },
         (user) async {
           Get.closeAllSnackbars();

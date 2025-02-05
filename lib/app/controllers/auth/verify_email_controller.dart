@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:wordly_project/app/controllers/auth/reset_password_controller.dart';
 
 import '../../../domain/repositories/auth_respository.dart';
 import '../../../utils/helpers/logger.dart';
@@ -37,6 +38,7 @@ class VerifyEmailController extends GetxController {
         email: email.value,
         code: int.parse(otp),
       );
+      Get.find<ResetPasswordController>().setEmail(email.value);
       Logger.log(model.toString());
       final api = Get.find<AuthRepository>();
 

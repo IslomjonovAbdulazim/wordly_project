@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String baseURL = "http://10.10.1.129:8000/";
+  static const String baseURL = "http://10.10.5.125:8001/";
 
   /// AUTH
   static const String resetPassword = "/api/v1/auth/auth/reset-password/";

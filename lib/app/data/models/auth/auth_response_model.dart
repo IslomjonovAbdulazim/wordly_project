@@ -9,7 +9,6 @@ class AuthResponseModel with _$AuthResponseModel {
     required int status,
     required String? message,
     required String? data,
-    String? createdAt,
   }) = _AuthResponseModel;
 
   factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>
