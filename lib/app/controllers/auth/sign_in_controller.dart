@@ -5,6 +5,7 @@ import 'package:wordly_project/app/routes/app_routes.dart';
 import 'package:wordly_project/domain/repositories/auth_respository.dart';
 import 'package:wordly_project/utils/helpers/validation_helper.dart';
 
+import '../../../utils/helpers/status_code_helper.dart';
 import '../../../utils/services/social_auth_service.dart';
 
 class SignInController extends GetxController {
@@ -54,10 +55,7 @@ class SignInController extends GetxController {
 
       result.fold(
         (failure) {
-          Get.closeAllSnackbars();
-          Get.snackbar("Error",
-              failure.message ?? "Something went wrong. Please try again.");
-          Get.toNamed(AppRoutes.home);
+          StatusCodeService.showSnackbar(failure.statusCode ?? 505);
         },
         (user) {
           Get.closeAllSnackbars();
